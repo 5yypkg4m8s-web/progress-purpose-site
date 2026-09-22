@@ -1,0 +1,55 @@
+---
+import Base from '../../layouts/Base.astro';
+import { SITE_NAME, AUTHOR_NAME, CONTACT_EMAIL } from '../../config.mjs';
+
+const LAST_UPDATED = '22 September 2026';
+---
+
+<Base title="Licence terms" description="What a single-setting licence allows you to do with a resource bought from this site, and how a multi-site licence works." noindex>
+  <Fragment set:html="<!-- DRAFT: written to match current site functionality. Have a solicitor review before relying on this. Update the data-sharing and cookies sections if tools change. -->" />
+  <section class="page-head">
+    <div class="wrap">
+      <p class="eyebrow">Legal</p>
+      <h1>Licence terms</h1>
+      <p class="muted">Last updated: {LAST_UPDATED}</p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:1rem">
+    <div class="wrap">
+      <div class="notice">
+        <p><strong>[DRAFT: to be reviewed by a solicitor before this business relies on it.]</strong> Nothing on this page is final legal wording.</p>
+      </div>
+
+      <div class="prose">
+        <h2>1. What this licence covers</h2>
+        <p>Unless stated otherwise on the Resources page, digital products from {SITE_NAME} are sold under a <strong>single-setting licence</strong>: the licence belongs to the one school, college or service that buys it, not to an individual person.</p>
+
+        <h2>2. What you can do</h2>
+        <p>Within that one setting, you may:</p>
+        <ul>
+          <li>copy the resource for use by your own staff;</li>
+          <li>adapt, edit and reformat it to suit your setting and the young people you work with; and</li>
+          <li>print or share it internally with colleagues and the students or families you support.</li>
+        </ul>
+
+        <h2>3. What you can't do</h2>
+        <p>You may not:</p>
+        <ul>
+          <li>resell the resource, or any edited version of it, to anyone else;</li>
+          <li>share, redistribute or upload it anywhere outside your own setting — including on a public website, a shared network open to other organisations, or a resource-sharing platform; or</li>
+          <li>publish it, or a substantially similar version of it, under your own or anyone else's name.</li>
+        </ul>
+
+        <h2>4. Copyright</h2>
+        <p>Copyright in each resource remains with {AUTHOR_NAME} at all times. Buying a licence gives you the right to use the resource as set out above — it does not transfer ownership or copyright to you.</p>
+
+        <h2>5. Multi-site or trust licence</h2>
+        <p>If you need to use a resource across more than one school, college or setting — for example, across a multi-academy trust or a local authority — a multi-site licence is available <strong>from £150, depending on the number of settings — contact us for a quote</strong>. Email {CONTACT_EMAIL} with the resource you're interested in and roughly how many settings would use it.</p>
+
+        <h2>6. Ending the licence</h2>
+        <p>If these terms are broken — for example, if a resource is shared outside the licensed setting — {AUTHOR_NAME} may end the licence for that resource. This doesn't affect your right to keep using resources you've bought and used in line with these terms.</p>
+      </div>
+    </div>
+  </section>
+</Base>

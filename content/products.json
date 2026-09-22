@@ -13,7 +13,8 @@
       "forWho": "SENCOs, transition leads and post-16 teams in a single school or college.",
       "format": "Word and PDF download",
       "licence": "Single-setting licence",
-      "price": "[TBC]",
+      "price": "£45",
+      "priceLabel": "Introductory price",
       "buyUrl": ""
     },
     {
@@ -29,7 +30,25 @@
       "forWho": "Staff who want a few ready-made templates without the full toolkit.",
       "format": "Word download",
       "licence": "[Licence type to be confirmed]",
-      "price": "[TBC]",
+      "price": "£12",
+      "buyUrl": ""
+    },
+    {
+      "id": "parent-carer-guide",
+      "cover": "charcoal",
+      "name": "Parent and Carer Guide to Post-16 Transition",
+      "summary": "A free, plain-English introduction to post-16 transition planning, sent by email.",
+      "includes": [
+        "Plain-English overview of the transition process",
+        "Questions worth asking at review meetings",
+        "PDF, sent to your inbox after signing up"
+      ],
+      "forWho": "Parents and carers of young people with SEND thinking about the move into post-16 provision.",
+      "format": "PDF, by email",
+      "licence": "For personal use",
+      "price": "Free",
+      "priceLabel": "Free download",
+      "free": true,
       "buyUrl": ""
     }
   ],
@@ -45,6 +64,7 @@
         "A fixed fee agreed in writing before work starts"
       ],
       "forWho": "Schools, colleges and local authorities wanting a considered written view of their transition provision.",
+      "fee": "From £650",
       "cta": "Request a quote"
     },
     {
@@ -58,7 +78,22 @@
         "Editable files so you can adapt them"
       ],
       "forWho": "Settings that want to brief their own staff using materials they deliver in-house.",
+      "fee": "£295 per setting licence",
       "cta": "Request a quote"
+    },
+    {
+      "id": "one-to-one-coaching",
+      "cover": "plum",
+      "name": "1:1 Coaching",
+      "summary": "Focused one-to-one coaching for staff, or for parents and carers, working through transition planning.",
+      "includes": [
+        "One-to-one, by video call or phone",
+        "Booked as a single session or a 4-session block",
+        "Short follow-up notes after each session"
+      ],
+      "forWho": "Individual staff members, or parents and carers, wanting focused 1:1 support rather than a written package.",
+      "fee": "£55/hour, or £195 for a 4-session block",
+      "cta": "Enquire about coaching"
     },
     {
       "id": "bespoke-resource-design",
@@ -71,6 +106,7 @@
         "[Further detail to be added]"
       ],
       "forWho": "Schools, colleges and local authorities who need something the ready-made resources do not cover.",
+      "fee": "From £500 — contact for a quote",
       "cta": "Request a quote"
     },
     {
@@ -84,6 +120,7 @@
         "[Further detail to be added]"
       ],
       "forWho": "Local authority teams working on post-16 transition and preparing for adulthood.",
+      "fee": "From £550/day — enquire",
       "cta": "Make an enquiry"
     }
   ]

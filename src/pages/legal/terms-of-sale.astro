@@ -1,0 +1,72 @@
+---
+import Base from '../../layouts/Base.astro';
+import { SITE_NAME, AUTHOR_NAME, CONTACT_EMAIL, ADDRESS } from '../../config.mjs';
+
+const LAST_UPDATED = '22 September 2026';
+const PAYMENT_PLATFORM = '[PAYMENT PLATFORM — e.g. Stripe or Payhip, to be confirmed]';
+---
+
+<Base title="Terms and conditions of sale" description="The terms that apply when you buy a digital resource or book a written service from this site." noindex>
+  <Fragment set:html="<!-- DRAFT: written to match current site functionality. Have a solicitor review before relying on this. Update the data-sharing and cookies sections if tools change. -->" />
+  <section class="page-head">
+    <div class="wrap">
+      <p class="eyebrow">Legal</p>
+      <h1>Terms and conditions of sale</h1>
+      <p class="muted">Last updated: {LAST_UPDATED}</p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:1rem">
+    <div class="wrap">
+      <div class="notice">
+        <p><strong>[DRAFT: to be reviewed by a solicitor before this business relies on it.]</strong> This page is written to match how the site actually works today. If the payment platform, pricing or services on offer change, this page needs to change with them.</p>
+      </div>
+
+      <div class="prose">
+        <h2>1. Who we are</h2>
+        <p>These terms apply to purchases made through this website, run by {AUTHOR_NAME}, trading as {SITE_NAME}. {AUTHOR_NAME} is a sole trader — a self-employed individual, not a limited company — providing digital resources and written consultancy services for SEND transition and preparing for adulthood.</p>
+        <p>
+          Contact address: {ADDRESS}<br />
+          Contact email: {CONTACT_EMAIL}
+        </p>
+
+        <h2>2. What these terms cover</h2>
+        <p>This site sells two different kinds of thing, and the details below apply differently to each:</p>
+        <ul>
+          <li><strong>Digital products</strong> — editable templates and toolkits, paid for and downloaded through the site (see "Resources").</li>
+          <li><strong>Written and advisory services</strong> — things like transition provision reviews, staff briefing packs, bespoke resource design and local authority advisory work (see "Packages"), which are quoted individually rather than bought instantly.</li>
+        </ul>
+
+        <h2>3. Prices and payment</h2>
+        <p>Prices for digital products are shown on the Resources page in pounds sterling (GBP), inclusive of any fees the payment platform itself charges you. {AUTHOR_NAME} is not currently registered for VAT, so no VAT is added to prices.</p>
+        <p>Payment for digital products is taken securely by <strong>{PAYMENT_PLATFORM}</strong>, a third-party payment platform. Card and billing details are entered on that platform's own page, not on this site — see the <a href="/legal/privacy-policy/">privacy policy</a> for more on how that works.</p>
+        <p>Fees for written services are agreed with you in writing — usually by email — before any work begins, and are invoiced separately.</p>
+
+        <h2>4. Delivery of digital products</h2>
+        <p>Digital products are delivered by instant download immediately after payment is confirmed by {PAYMENT_PLATFORM}. There is no physical delivery and nothing is posted to you.</p>
+        <p>Before completing a purchase, you're asked to confirm you understand that the download becomes available straight away — see "Refunds and digital delivery" below for what that means for your right to cancel.</p>
+
+        <h2>5. Written and advisory services</h2>
+        <p>Written services are scoped and quoted individually, based on what you tell {AUTHOR_NAME} in your enquiry. Work begins once a fee has been agreed in writing. Timescales, what's included and how the finished work is delivered (for example, as a written report or a set of files) are agreed as part of that same conversation.</p>
+
+        <h2>6. Licence to use resources</h2>
+        <p>Buying a digital product gives you a licence to use it — it does not transfer ownership or copyright to you. What you can and can't do with a resource you've bought is set out in full on the <a href="/legal/licence-terms/">licence terms</a> page; please read that before you buy.</p>
+
+        <h2>7. Cancellations and refunds</h2>
+        <p>How cancellation and refunds work — for both digital products and written services — is covered in full on the <a href="/legal/refunds-and-digital-delivery/">refunds and digital delivery</a> page.</p>
+
+        <h2>8. Limitation of liability</h2>
+        <p>These resources and this advice are provided as general information and templates to adapt for your own setting — they are not a substitute for your own professional judgement, or for legal, medical or statutory advice specific to a young person's circumstances. {AUTHOR_NAME}'s liability for any loss arising from your use of a resource or written service is limited to the amount you paid for it, except where the law does not allow liability to be limited or excluded (for example, for death or personal injury caused by negligence, or fraud).</p>
+
+        <h2>9. Complaints</h2>
+        <p>If something isn't right, please contact {AUTHOR_NAME} at {CONTACT_EMAIL} in the first instance, so it can be put right directly.</p>
+
+        <h2>10. Governing law</h2>
+        <p>These terms are governed by the law of England and Wales, and any dispute will be dealt with by the courts of England and Wales.</p>
+
+        <h2>11. Changes to these terms</h2>
+        <p>These terms may be updated from time to time. The date at the top of this page shows when it was last updated.</p>
+      </div>
+    </div>
+  </section>
+</Base>

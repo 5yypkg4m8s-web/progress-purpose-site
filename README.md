@@ -17,15 +17,22 @@ Also in `src/config.mjs`, replace the bracketed placeholders: `SITE_URL` (your d
 ## Add or edit products
 Everything is in `content/products.json`.
 - `products` appear on **Resources** with a buy button and price.
-- `services` appear on **Packages** with "Request a quote" (no prices).
+- `services` appear on **Packages** with "Request a quote" and an indicative fee.
 
 Copy an existing entry, give it a unique `id`, and edit. `cover` can be `terracotta`, `plum` or `charcoal`. New services appear automatically in the enquiry form's package list.
+
+A few optional fields:
+- `priceLabel` on a product — replaces the small "Price" caption above the price, e.g. `"Introductory price"` (used on the toolkit) or `"Free download"` (used on the parent guide).
+- `free: true` on a product — changes the button wording ("Get the guide" / "Sign-up form to be added") instead of the buy-now wording, and drops the immediate-delivery consent requirement, since that's specifically about paid digital purchases.
+- `fee` on a service — shown instead of the default "Quote on request".
 
 ## Connect payment links
 1. Create a product in **Payhip** or a **Stripe Payment Link**.
 2. Paste its URL into that product's `buyUrl`. Until you do, the button shows "Buy link to be added".
-3. Set the price text in `price` (currently `[TBC]`).
-4. **Immediate delivery consent:** ask for this at checkout too. In Stripe, use the custom text / terms checkbox on the Payment Link. In Payhip, use the terms option. Reuse the solicitor-approved wording from `DELIVERY_CONSENT`. The Resources page also requires a ticked box before a buy link opens.
+3. **Immediate delivery consent:** ask for this at checkout too. In Stripe, use the custom text / terms checkbox on the Payment Link. In Payhip, use the terms option. Reuse the solicitor-approved wording from `DELIVERY_CONSENT`. The Resources page also requires a ticked box before a buy link opens (for paid products — free downloads skip this).
+
+## Connect the parent guide sign-up
+The "Parent and Carer Guide" product is free in exchange for an email address, but there's no mailing list wired up yet — its `buyUrl` is empty, so the button shows "Sign-up form to be added". Once you've picked a provider (Mailchimp, Brevo, ConvertKit, etc.), set that product's `buyUrl` to your sign-up form's URL, and update the "Newsletter or mailing list" section of `src/pages/legal/privacy-policy.astro` to name the provider and explain how to unsubscribe.
 
 ## Connect the enquiry form
 The form in `src/pages/contact.astro` is set up for **Netlify Forms** (`data-netlify`, with a honeypot spam trap). After deploying, enquiries appear in the Netlify dashboard under Forms. Add an email notification there.
@@ -36,9 +43,19 @@ To use **Formspree** instead: remove `data-netlify` and `netlify-honeypot`, the 
 Replace `public/downloads/free-sample.pdf` with your real file (keep the file name, or edit the link in `src/pages/index.astro`).
 
 ## Legal pages
-`content/legal.json` holds draft placeholders (headings and notes on what to cover) for Terms of sale, Refunds and digital delivery, and Licence terms. Have a solicitor write or approve the final wording. These pages are marked `noindex` until you remove that in `src/pages/legal/[slug].astro`.
+All five are written out in full already, in plain English, to match what the site actually does — but they're still drafts (see the notice box on each page, and the HTML comment at the top of each file) and need a solicitor's review before you rely on them. Each is linked from the footer on every page, listed on `/legal/`, and has a short-URL redirect that only works once deployed, not on `npm run dev` (`public/_redirects`):
 
-**Privacy policy** (`src/pages/legal/privacy-policy.astro`) is written out in full already, in plain English, to match what the site actually does — but it's still a draft (see the notice on the page itself and the HTML comment at the top of the file) and needs a solicitor's review before you rely on it. It's linked from the footer on every page, and `/privacy` redirects to it once deployed (`public/_redirects` — this only works on the live site, not `npm run dev`). It has three bracketed placeholders left to fill in once you've decided: `[PAYMENT PROCESSOR]` (Stripe or Payhip), `[HOSTING PROVIDER]` (Netlify or Cloudflare Pages), plus the `CONTACT_EMAIL` and `ADDRESS` placeholders it pulls in from `src/config.mjs`. It already names **Netlify Forms** (the enquiry form) and **Plausible** (analytics, off by default) correctly, since those are actually wired up — if you switch either one out, update this page to match, as the comment at its top says.
+| Page | File | Short URL |
+|---|---|---|
+| Terms and conditions of sale | `src/pages/legal/terms-of-sale.astro` | `/terms` |
+| Privacy policy | `src/pages/legal/privacy-policy.astro` | `/privacy` |
+| Refunds and digital delivery | `src/pages/legal/refunds-and-digital-delivery.astro` | `/refunds` |
+| Licence terms | `src/pages/legal/licence-terms.astro` | `/licence` |
+| Accessibility statement | `src/pages/legal/accessibility-statement.astro` | `/accessibility` |
+
+The accessibility statement is the one exception — it's a factual statement about how the site's built, not contractual wording, so it isn't marked as a solicitor-review draft the way the other four are.
+
+Bracketed placeholders still to fill in across these pages: `[PAYMENT PLATFORM]` (Stripe or Payhip, appears on the terms and privacy pages), `[HOSTING PROVIDER]` (privacy policy only), and `[REFUND TIMESCALE TO BE CONFIRMED]` (refunds page) — plus whatever `CONTACT_EMAIL` and `ADDRESS` still show as placeholders from `src/config.mjs`. Each page also has a `LAST_UPDATED` constant near the top — update that whenever you change the page.
 
 ## Deploy
 **Netlify:** push to GitHub, "Add new site" > "Import from Git". Build command `npm run build`, publish directory `dist` (already in `netlify.toml`). Then set your domain and update `SITE_URL`.

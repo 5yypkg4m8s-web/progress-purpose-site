@@ -1,0 +1,48 @@
+---
+import Base from '../../layouts/Base.astro';
+import { SITE_NAME, CONTACT_EMAIL } from '../../config.mjs';
+
+const LAST_UPDATED = '22 September 2026';
+---
+
+<Base title="Accessibility statement" description="How this site aims to meet WCAG 2.2 AA, what's been done, and how to report an accessibility problem." noindex>
+  <section class="page-head">
+    <div class="wrap">
+      <p class="eyebrow">Legal</p>
+      <h1>Accessibility statement</h1>
+      <p class="muted">Last updated: {LAST_UPDATED}</p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:1rem">
+    <div class="wrap">
+      <div class="prose">
+        <p>{SITE_NAME} aims for this website to meet the <strong>WCAG 2.2 AA</strong> accessibility standard (Web Content Accessibility Guidelines, level AA). This page explains what's been done towards that, what's known not to be perfect yet, and how to tell us if something doesn't work for you.</p>
+
+        <h2>What we've done</h2>
+        <ul>
+          <li>A "skip to main content" link at the top of every page, for people using a keyboard or screen reader.</li>
+          <li>Visible keyboard focus on every link, button and form field — you can tell where you are without a mouse.</li>
+          <li>Clear heading structure and landmark regions (header, main, footer) on every page.</li>
+          <li>Decorative images and graphics are hidden from screen readers, so they don't add noise; meaningful images and icons have text alternatives.</li>
+          <li>Colours are chosen to meet AA contrast requirements against their backgrounds.</li>
+          <li>The layout works down to mobile widths and up to 200% browser zoom, without content overlapping or being cut off.</li>
+          <li>Animation (such as the moving illustration on the home page) is switched off automatically if your device is set to reduce motion.</li>
+          <li>Form fields have visible labels, and errors are announced rather than shown by colour alone.</li>
+          <li>No auto-playing audio or video anywhere on the site.</li>
+          <li>No content that flashes or flickers.</li>
+        </ul>
+
+        <h2>What we know isn't perfect yet</h2>
+        <p>This site hasn't yet been tested by an accessibility specialist, or by people who use assistive technology day to day — the list above reflects what's been built in, not the result of a formal audit. If you find something that doesn't work well with your screen reader, switch device, browser extension or other assistive technology, please tell us (details below) — that's genuinely the best way for this to improve.</p>
+        <p>Payment for digital products happens on a page run by a separate payment provider, not built by us — its accessibility is down to that provider, not this site.</p>
+
+        <h2>Reporting a problem</h2>
+        <p>If you find an accessibility problem on this site, or something that's hard to use, email {CONTACT_EMAIL} with the page and what happened. We'll aim to look into it and get back to you.</p>
+
+        <h2>About this statement</h2>
+        <p>This is a small, privately run business site, not a public sector body — the formal legal requirement to publish an accessibility statement (under the Public Sector Bodies Accessibility Regulations) doesn't apply here. We've published one anyway, because it's good practice and because knowing what to expect matters more than what the law requires.</p>
+      </div>
+    </div>
+  </section>
+</Base>

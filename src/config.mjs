@@ -31,6 +31,7 @@ export const LEGAL_NAV = [
   { href: '/legal/privacy-policy/', label: 'Privacy policy' },
   { href: '/legal/refunds-and-digital-delivery/', label: 'Refunds and digital delivery' },
   { href: '/legal/licence-terms/', label: 'Licence terms' },
+  { href: '/legal/accessibility-statement/', label: 'Accessibility statement' },
 ];
 
 // Personal profile only. Nothing from any other organisation.

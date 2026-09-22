@@ -1,0 +1,45 @@
+---
+import Base from '../../layouts/Base.astro';
+import { SITE_NAME, AUTHOR_NAME, CONTACT_EMAIL } from '../../config.mjs';
+
+const LAST_UPDATED = '22 September 2026';
+---
+
+<Base title="Refunds and digital delivery" description="How digital delivery, cancellation and refunds work for resources bought from this site." noindex>
+  <Fragment set:html="<!-- DRAFT: written to match current site functionality. Have a solicitor review before relying on this. Update the data-sharing and cookies sections if tools change. -->" />
+  <section class="page-head">
+    <div class="wrap">
+      <p class="eyebrow">Legal</p>
+      <h1>Refunds and digital delivery</h1>
+      <p class="muted">Last updated: {LAST_UPDATED}</p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:1rem">
+    <div class="wrap">
+      <div class="notice">
+        <p><strong>[DRAFT: to be reviewed by a solicitor before this business relies on it.]</strong> Nothing on this page is final legal wording.</p>
+      </div>
+
+      <div class="prose">
+        <h2>1. Immediate delivery</h2>
+        <p>Digital products on this site are delivered straight away — the download becomes available immediately after payment. Before you buy, you're asked to tick a box confirming you understand and agree to this. That matters for your cancellation rights, explained below.</p>
+
+        <h2>2. Your right to cancel</h2>
+        <p>Under the UK's Consumer Contracts Regulations, when you buy digital content online you normally have 14 days to change your mind and cancel for a full refund. But that right ends early if you ask for the download to begin straight away and confirm you understand you'll lose the right to cancel once it has — which is exactly what the tick-box on the Resources page asks you to confirm before you buy. In practice, this means: once you've downloaded a {SITE_NAME} resource, the standard 14-day cancellation right no longer applies.</p>
+
+        <h2>3. Refunds for digital products</h2>
+        <p>Because of the above, digital products are non-refundable once they've been downloaded or accessed — except where the file is faulty, or turns out not to match what was described on the Resources page. In those cases, you're entitled to a repair, a replacement file, or a refund, and we'll sort out whichever is right for the problem.</p>
+
+        <h2>4. If a download fails, or a file won't open</h2>
+        <p>If your download doesn't work, the file is corrupted, or you can't open it in Word or your PDF reader, get in touch at {CONTACT_EMAIL} with the product name and roughly when you bought it. A working copy will be sent to you directly. Please try this before requesting a refund — most delivery problems are quick to fix.</p>
+
+        <h2>5. Written services</h2>
+        <p>Written and advisory services (such as a transition provision review or bespoke resource design) are quoted and agreed individually. Cancellation terms for that work — including whether any fee is owed if you cancel after work has started — are agreed with you in writing before the work begins, as part of that quote.</p>
+
+        <h2>6. How to ask for a refund or get help</h2>
+        <p>Email {CONTACT_EMAIL} with your order details and what's gone wrong. Refunds, where due, are returned to the payment method you used to buy, usually within [REFUND TIMESCALE TO BE CONFIRMED] of the refund being agreed.</p>
+      </div>
+    </div>
+  </section>
+</Base>
