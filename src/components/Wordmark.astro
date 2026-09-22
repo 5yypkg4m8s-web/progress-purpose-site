@@ -1,0 +1,12 @@
+---
+// Splits "X & Y" so the ampersand can be styled on its own. Falls back to plain
+// text if the trading name doesn't contain " & " (e.g. a future name change).
+import { SITE_NAME } from '../config.mjs';
+const SEP = ' & ';
+const cut = SITE_NAME.indexOf(SEP);
+const before = cut === -1 ? SITE_NAME : SITE_NAME.slice(0, cut);
+const after = cut === -1 ? '' : SITE_NAME.slice(cut + SEP.length);
+---
+<a class="wordmark" href="/">
+  {before}{cut !== -1 && <>&nbsp;<span class="wordmark__amp">&amp;</span>&nbsp;{after}</>}
+</a>
