@@ -1,6 +1,5 @@
 ---
 import Base from '../layouts/Base.astro';
-import Crowd from '../components/Crowd.astro';
 import { AUTHOR_NAME, LINKEDIN_URL } from '../config.mjs';
 const initials = AUTHOR_NAME.split(' ').map((w) => w[0]).join('').slice(0, 2);
 ---
@@ -72,8 +71,6 @@ const initials = AUTHOR_NAME.split(' ').map((w) => w[0]).join('').slice(0, 2);
       </div>
     </div>
   </section>
-
-  <Crowd />
 
   <section class="section section--dark">
     <div class="wrap">
