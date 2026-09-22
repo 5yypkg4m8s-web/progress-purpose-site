@@ -85,14 +85,14 @@
       "id": "one-to-one-coaching",
       "cover": "plum",
       "name": "1:1 Coaching",
-      "summary": "Private coaching for one individual at a time, working through transition planning. A school can book this for a member of staff, or a parent or carer can book it for themselves.",
+      "summary": "Private coaching for one young person at a time, working through transition planning. Can be booked by their school, or by a parent or carer.",
       "includes": [
-        "Always one-to-one — never a group or shared session",
+        "Always one-to-one, for the individual — never a group or shared session",
         "By video call or phone",
         "Booked as a single session or a 4-session block",
         "Short follow-up notes after each session"
       ],
-      "forWho": "One individual at a time: a member of staff, booked and paid for by their school, or a parent or carer, booking for themselves.",
+      "forWho": "A young person with SEND working through post-16 transition — booked by their school, or by a parent or carer.",
       "fee": "£55/hour, or £195 for a 4-session block",
       "cta": "Enquire about coaching"
     },
