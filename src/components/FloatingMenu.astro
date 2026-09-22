@@ -1,0 +1,96 @@
+---
+// A small floating shortcut, fixed at the bottom of every page, alongside the
+// header nav (not replacing it) — handy on long pages without scrolling back up.
+// Reuses NAV from config.mjs so it can't drift out of sync with the header.
+import { NAV } from '../config.mjs';
+const path = Astro.url.pathname;
+---
+<div class="floatnav">
+  <nav id="floatnav-list" class="floatnav__list" aria-label="Quick navigation" hidden>
+    <ul>
+      {NAV.map((i) => (
+        <li><a href={i.href} aria-current={path.startsWith(i.href) ? 'page' : undefined}>{i.label}</a></li>
+      ))}
+      <li><a class="floatnav__cta" href="/contact/">Request a quote</a></li>
+    </ul>
+  </nav>
+  <button type="button" class="floatnav__btn" id="floatnav-toggle" aria-expanded="false" aria-controls="floatnav-list">
+    <span class="floatnav__icon" aria-hidden="true"><span></span><span></span></span>
+    Menu
+  </button>
+</div>
+
+<script>
+  const btn = document.getElementById('floatnav-toggle');
+  const list = document.getElementById('floatnav-list');
+  const wrap = btn?.closest('.floatnav');
+
+  const close = () => {
+    if (!btn || !list || !wrap) return;
+    list.hidden = true;
+    btn.setAttribute('aria-expanded', 'false');
+    wrap.classList.remove('is-open');
+  };
+  const open = () => {
+    if (!btn || !list || !wrap) return;
+    list.hidden = false;
+    btn.setAttribute('aria-expanded', 'true');
+    wrap.classList.add('is-open');
+  };
+
+  btn?.addEventListener('click', () => {
+    btn.getAttribute('aria-expanded') === 'true' ? close() : open();
+  });
+  document.addEventListener('click', (e) => {
+    if (wrap && !wrap.contains(e.target as Node) && btn?.getAttribute('aria-expanded') === 'true') close();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && btn?.getAttribute('aria-expanded') === 'true') {
+      close();
+      btn.focus();
+    }
+  });
+</script>
+
+<style>
+  .floatnav {
+    position: fixed; left: 50%; bottom: 1.5rem; transform: translateX(-50%); z-index: 80;
+    display: flex; flex-direction: column; align-items: center;
+  }
+  @media (max-width: 420px) { .floatnav { bottom: 1rem; } }
+
+  .floatnav__list {
+    order: -1; margin-bottom: 0.75rem; min-width: 12rem;
+    background: var(--ink); border-radius: 1.25rem; box-shadow: var(--shadow); padding: 0.75rem;
+    transform-origin: bottom center;
+  }
+  .floatnav__list[hidden] { display: none; }
+  @media (prefers-reduced-motion: no-preference) {
+    .floatnav__list { animation: floatnav-in 0.2s ease; }
+    @keyframes floatnav-in { from { opacity: 0; transform: scale(0.94) translateY(6px); } to { opacity: 1; transform: none; } }
+  }
+  .floatnav__list ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.15rem; text-align: center; }
+  .floatnav__list a {
+    display: block; padding: 0.65rem 1.25rem; border-radius: 0.75rem;
+    color: var(--sand); text-decoration: none; font-weight: 700; font-size: 0.95rem;
+  }
+  .floatnav__list a:hover { background: rgb(250 246 240 / 0.1); }
+  .floatnav__list a[aria-current='page'] { color: #f0b39f; }
+  .floatnav__cta { margin-top: 0.3rem; background: var(--terra); color: var(--white) !important; }
+  .floatnav__cta:hover { background: var(--terra-dark); }
+
+  .floatnav__btn {
+    display: inline-flex; align-items: center; gap: 0.65rem; min-height: 3rem; padding: 0 1.4rem;
+    border-radius: 999px; border: 1px solid var(--line); background: var(--white); color: var(--ink);
+    font: 700 0.95rem var(--sans); box-shadow: var(--shadow); cursor: pointer;
+  }
+  .floatnav.is-open .floatnav__btn { background: var(--ink); color: var(--sand); border-color: var(--ink); }
+
+  .floatnav__icon { display: inline-grid; gap: 4px; width: 1.1rem; flex: none; }
+  .floatnav__icon span {
+    display: block; height: 2px; background: currentColor; border-radius: 2px;
+    transition: transform 0.25s ease;
+  }
+  .floatnav.is-open .floatnav__icon span:first-child { transform: translateY(3px) rotate(45deg); }
+  .floatnav.is-open .floatnav__icon span:last-child { transform: translateY(-3px) rotate(-45deg); }
+</style>
