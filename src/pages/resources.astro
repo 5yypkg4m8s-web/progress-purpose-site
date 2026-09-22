@@ -1,0 +1,39 @@
+---
+import Base from '../layouts/Base.astro';
+import PaymentCard from '../components/PaymentCard.astro';
+import ProductCard from '../components/ProductCard.astro';
+import data from '../../content/products.json';
+import { DELIVERY_CONSENT } from '../config.mjs';
+const schema = {
+  '@context': 'https://schema.org', '@type': 'ItemList',
+  itemListElement: data.products.map((p, i) => ({
+    '@type': 'ListItem', position: i + 1,
+    item: { '@type': 'Product', name: p.name, description: p.summary },
+  })),
+};
+---
+<Base title="Resources" schema={schema} description="Editable SEND transition templates and toolkits for post-16 settings, delivered as Word and PDF downloads.">
+  <section class="page-head">
+    <div class="wrap">
+      <p class="eyebrow">Resources</p>
+      <h1>Templates and toolkits, ready to download.</h1>
+      <p class="lede">Digital downloads for post-16 transition planning. Editable in Word, printable as PDF.</p>
+    </div>
+  </section>
+  <section class="section" style="padding-top:1rem">
+    <div class="wrap">
+      <PaymentCard />
+      <div class="consent notice">
+        <label>
+          <input type="checkbox" id="delivery-consent" />
+          <span>{DELIVERY_CONSENT}</span>
+        </label>
+        <p class="error" id="consent-error" role="alert" hidden>Please tick the box above before buying.</p>
+      </div>
+      <div class="grid grid--2">
+        {data.products.map((item) => <ProductCard item={item} kind="product" />)}
+      </div>
+      <p class="muted" style="margin-top:2rem">Payment is taken securely by a third-party payment provider. This site never sees or stores card details. See <a href="/legal/refunds-and-digital-delivery/">refunds and digital delivery</a> and <a href="/legal/licence-terms/">licence terms</a>.</p>
+    </div>
+  </section>
+</Base>

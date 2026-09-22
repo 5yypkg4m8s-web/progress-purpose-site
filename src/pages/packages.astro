@@ -1,0 +1,24 @@
+---
+import Base from '../layouts/Base.astro';
+import ProductCard from '../components/ProductCard.astro';
+import data from '../../content/products.json';
+---
+<Base title="Packages for schools and local authorities" description="Written transition provision reviews, staff briefing packs, bespoke resources and local authority advisory. Quote on request.">
+  <section class="page-head">
+    <div class="wrap">
+      <p class="eyebrow">Packages</p>
+      <h1>Packages for schools, colleges and local authorities.</h1>
+      <p class="lede">Written, advisory and product-based support, scoped to your needs. Every package is quoted individually, so there are no set prices listed here.</p>
+    </div>
+  </section>
+  <section class="section" style="padding-top:1rem">
+    <div class="wrap">
+      <div class="grid grid--2">
+        {data.services.map((item) => <ProductCard item={item} kind="service" />)}
+      </div>
+      <div class="notice" style="margin-top:2.5rem">
+        <p>All services are delivered in writing or as ready-made materials. Live group training, workshops and events are not offered.</p>
+      </div>
+    </div>
+  </section>
+</Base>

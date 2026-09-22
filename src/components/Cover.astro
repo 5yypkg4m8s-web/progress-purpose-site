@@ -1,0 +1,8 @@
+---
+const { variant = 'terracotta', label = '' } = Astro.props;
+---
+<div class={`cover cover--${variant}`} aria-hidden="true">
+  <div class="cover__sheet cover__sheet--back"><i></i><i></i><i></i><i></i></div>
+  <div class="cover__sheet"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  {label && <span class="cover__tag">{label}</span>}
+</div>

@@ -1,0 +1,90 @@
+{
+  "products": [
+    {
+      "id": "transition-planning-toolkit",
+      "cover": "terracotta",
+      "name": "Post-16 Transition Planning Toolkit for Young People with SEND",
+      "summary": "Editable templates for planning the move into adulthood with young people with SEND, licensed for one setting.",
+      "includes": [
+        "Editable Word templates",
+        "PDF versions for reading and printing",
+        "[List of included templates to be added]"
+      ],
+      "forWho": "SENCOs, transition leads and post-16 teams in a single school or college.",
+      "format": "Word and PDF download",
+      "licence": "Single-setting licence",
+      "price": "[TBC]",
+      "buyUrl": ""
+    },
+    {
+      "id": "starter-template-pack",
+      "cover": "plum",
+      "name": "Starter template pack",
+      "summary": "Three editable templates, a smaller way to try the approach before choosing the full toolkit.",
+      "includes": [
+        "Three templates",
+        "Editable Word format",
+        "[Names of the three templates to be added]"
+      ],
+      "forWho": "Staff who want a few ready-made templates without the full toolkit.",
+      "format": "Word download",
+      "licence": "[Licence type to be confirmed]",
+      "price": "[TBC]",
+      "buyUrl": ""
+    }
+  ],
+  "services": [
+    {
+      "id": "transition-provision-review",
+      "cover": "charcoal",
+      "name": "Written Transition Provision Review",
+      "summary": "A desk-based review of your post-16 transition provision, delivered as a written report for a fixed fee.",
+      "includes": [
+        "Desk-based review of the documents you share",
+        "A written report",
+        "A fixed fee agreed in writing before work starts"
+      ],
+      "forWho": "Schools, colleges and local authorities wanting a considered written view of their transition provision.",
+      "cta": "Request a quote"
+    },
+    {
+      "id": "staff-briefing-pack",
+      "cover": "terracotta",
+      "name": "Staff Briefing Pack",
+      "summary": "Ready-to-use slides and handouts so your own team can brief colleagues on transition.",
+      "includes": [
+        "Slides you can present yourselves",
+        "Printable handouts",
+        "Editable files so you can adapt them"
+      ],
+      "forWho": "Settings that want to brief their own staff using materials they deliver in-house.",
+      "cta": "Request a quote"
+    },
+    {
+      "id": "bespoke-resource-design",
+      "cover": "plum",
+      "name": "Bespoke Resource Design",
+      "summary": "Resources designed to your brief and delivered as editable files.",
+      "includes": [
+        "A brief agreed with you in writing",
+        "Editable files delivered to you",
+        "[Further detail to be added]"
+      ],
+      "forWho": "Schools, colleges and local authorities who need something the ready-made resources do not cover.",
+      "cta": "Request a quote"
+    },
+    {
+      "id": "local-authority-advisory",
+      "cover": "charcoal",
+      "name": "Local authority advisory",
+      "summary": "Written, advisory support for local authority teams. Enquiry only.",
+      "includes": [
+        "An initial conversation by email about your needs",
+        "Written advice scoped to your question",
+        "[Further detail to be added]"
+      ],
+      "forWho": "Local authority teams working on post-16 transition and preparing for adulthood.",
+      "cta": "Make an enquiry"
+    }
+  ]
+}

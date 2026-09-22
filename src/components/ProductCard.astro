@@ -1,0 +1,33 @@
+---
+import Cover from './Cover.astro';
+const { item, kind } = Astro.props; // kind: 'product' | 'service'
+const isProduct = kind === 'product';
+---
+<article class="card" data-reveal>
+  <Cover variant={item.cover} label={isProduct ? item.format : 'Written service'} />
+  <div class="card__body">
+    <p class="card__kind">{isProduct ? 'Digital download' : 'Enquiry-led'}</p>
+    <h3>{item.name}</h3>
+    <p>{item.summary}</p>
+    <ul>{item.includes.map((i) => <li>{i}</li>)}</ul>
+    <dl class="meta">
+      <div><dt>Who it is for</dt><dd>{item.forWho}</dd></div>
+      {isProduct && <div><dt>Licence</dt><dd>{item.licence}</dd></div>}
+    </dl>
+    <div class="card__foot">
+      {isProduct ? (
+        <>
+          <p class="price" style="margin:0"><small>Price</small>{item.price}</p>
+          {item.buyUrl
+            ? <a class="btn btn--primary" href={item.buyUrl} data-buy>Buy now<span class="visually-hidden">: {item.name}</span></a>
+            : <button class="btn btn--plain" type="button" disabled>Buy link to be added</button>}
+        </>
+      ) : (
+        <>
+          <p class="price" style="margin:0"><small>Fee</small><span style="font-size:1.1rem">Quote on request</span></p>
+          <a class="btn btn--primary" href={`/contact/?package=${item.id}`}>{item.cta}<span class="visually-hidden">: {item.name}</span></a>
+        </>
+      )}
+    </div>
+  </div>
+</article>

@@ -1,0 +1,171 @@
+---
+// Only renders when ANALYTICS.enabled is true in src/config.mjs — until then the site
+// sets nothing to ask consent for, so there is nothing to show. When it does render:
+// the analytics script is not requested until the visitor chooses "Accept" or ticks
+// Analytics under "Customise" and saves. Their choice is stored in this browser's
+// local storage (not a cookie) so the banner doesn't reappear every visit.
+import { ANALYTICS, LEGAL_NAV } from '../config.mjs';
+const privacyHref = LEGAL_NAV.find((l) => l.href.includes('privacy'))?.href ?? '/legal/privacy-policy/';
+---
+
+{ANALYTICS.enabled && (
+  <div class="cookiebar" id="cookiebar" role="dialog" aria-live="polite" aria-label="Cookies on this site" hidden>
+    <div class="cookiebar__panel">
+      <div class="cookiebar__head">
+        <span class="cookiebar__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="9" cy="10" r="1" fill="currentColor" stroke="none"/><circle cx="14" cy="8" r="1" fill="currentColor" stroke="none"/><circle cx="14.5" cy="14.5" r="1" fill="currentColor" stroke="none"/></svg>
+        </span>
+        <h2>Before you carry on</h2>
+        <button type="button" class="cookiebar__close" id="cookiebar-close" aria-label="Close without choosing (you'll be asked again next visit)">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <p>I'd like to use cookie-free analytics to see roughly how many people visit and which pages are useful. No personal data is collected, and nothing is used for advertising. See the <a href={privacyHref}>privacy policy</a>.</p>
+
+      <div class="cookiebar__actions">
+        <button type="button" class="btn btn--ghost btn--sm" id="cookiebar-reject">Reject</button>
+        <button type="button" class="btn btn--ghost btn--sm" id="cookiebar-toggle" aria-expanded="false" aria-controls="cookiebar-detail">
+          Customise
+          <svg class="chev" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <button type="button" class="btn btn--primary btn--sm" id="cookiebar-accept">Accept</button>
+      </div>
+
+      <div id="cookiebar-detail" class="cookiebar__detail" hidden>
+        <div class="cookiebar__row">
+          <span class="cookiebar__check cookiebar__check--locked" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+          </span>
+          <div>
+            <strong>Essential <span class="cookiebar__required">Required</span></strong>
+            <p>Remembers the choice you make here, on this device only. Nothing is sent anywhere.</p>
+          </div>
+        </div>
+        <div class="cookiebar__row">
+          <button type="button" class="cookiebar__check" id="cookiebar-analytics-toggle" aria-pressed="false" aria-label="Allow analytics">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+          </button>
+          <div>
+            <strong>Analytics</strong>
+            <p>Cookie-free visit counts, so I know which pages are useful. No personal data, no cookies.</p>
+          </div>
+        </div>
+        <div class="cookiebar__save">
+          <button type="button" class="btn btn--primary btn--sm" id="cookiebar-save">Save choice</button>
+        </div>
+      </div>
+    </div>
+  </div>
+)}
+
+<script define:vars={{ enabled: ANALYTICS.enabled, domain: ANALYTICS.domain, scriptSrc: ANALYTICS.scriptSrc }}>
+  if (enabled) {
+    const KEY = 'cookie-consent'; // 'granted' | 'denied', in localStorage — not a cookie
+    const bar = document.getElementById('cookiebar');
+
+    const loadAnalytics = () => {
+      if (document.querySelector('script[data-analytics]')) return;
+      const s = document.createElement('script');
+      s.defer = true;
+      s.src = scriptSrc;
+      s.setAttribute('data-domain', domain);
+      s.setAttribute('data-analytics', '');
+      document.head.appendChild(s);
+    };
+
+    const show = () => { bar.hidden = false; };
+    const hide = () => { bar.hidden = true; };
+
+    const stored = localStorage.getItem(KEY);
+    if (stored === 'granted') loadAnalytics();
+    else if (stored !== 'denied') show();
+
+    document.getElementById('cookiebar-accept')?.addEventListener('click', () => {
+      localStorage.setItem(KEY, 'granted');
+      loadAnalytics();
+      hide();
+    });
+    document.getElementById('cookiebar-reject')?.addEventListener('click', () => {
+      localStorage.setItem(KEY, 'denied');
+      hide();
+    });
+    document.getElementById('cookiebar-close')?.addEventListener('click', hide);
+
+    const toggleBtn = document.getElementById('cookiebar-toggle');
+    const detail = document.getElementById('cookiebar-detail');
+    toggleBtn?.addEventListener('click', () => {
+      const open = detail.hidden;
+      detail.hidden = !open;
+      toggleBtn.setAttribute('aria-expanded', String(open));
+    });
+
+    const analyticsToggle = document.getElementById('cookiebar-analytics-toggle');
+    let analyticsWanted = stored === 'granted';
+    if (analyticsWanted) {
+      analyticsToggle?.setAttribute('aria-pressed', 'true');
+      analyticsToggle?.classList.add('is-checked');
+    }
+    analyticsToggle?.addEventListener('click', () => {
+      analyticsWanted = !analyticsWanted;
+      analyticsToggle.setAttribute('aria-pressed', String(analyticsWanted));
+      analyticsToggle.classList.toggle('is-checked', analyticsWanted);
+    });
+
+    document.getElementById('cookiebar-save')?.addEventListener('click', () => {
+      if (analyticsWanted) { localStorage.setItem(KEY, 'granted'); loadAnalytics(); }
+      else { localStorage.setItem(KEY, 'denied'); }
+      hide();
+    });
+
+    // A "Cookie settings" link (e.g. in the footer) can reopen this at any time.
+    document.querySelectorAll('[data-reopen-cookiebar]').forEach((el) =>
+      el.addEventListener('click', (e) => { e.preventDefault(); show(); })
+    );
+  }
+</script>
+
+<style>
+  .cookiebar {
+    position: fixed; right: 1rem; bottom: 1rem; left: 1rem; z-index: 90;
+    display: flex; justify-content: flex-end;
+  }
+  @media (min-width: 560px) { .cookiebar { left: auto; width: 24rem; } }
+  /* [hidden] and .cookiebar/.cookiebar__detail share specificity; without this,
+     source order alone decides, which can leave a "hidden" panel showing. */
+  .cookiebar[hidden], .cookiebar__detail[hidden] { display: none; }
+  .cookiebar__panel {
+    width: 100%; background: var(--white); color: var(--ink); border: 1px solid var(--line);
+    border-radius: var(--radius); box-shadow: var(--shadow); padding: 1.25rem;
+  }
+  .cookiebar__head { display: flex; align-items: center; gap: 0.65rem; }
+  .cookiebar__icon {
+    flex: none; width: 2.25rem; height: 2.25rem; display: grid; place-items: center;
+    border-radius: 0.65rem; background: var(--sand-2); color: var(--terra);
+  }
+  .cookiebar__head h2 { font-size: 1.05rem; margin: 0; color: var(--ink); font-family: var(--sans); font-weight: 700; }
+  .cookiebar__close {
+    margin-left: auto; width: 2rem; height: 2rem; display: grid; place-items: center;
+    background: transparent; border: none; border-radius: 0.5rem; color: var(--ink-soft); cursor: pointer;
+  }
+  .cookiebar__close:hover { background: var(--sand-2); }
+  .cookiebar p { font-size: 0.9rem; margin: 0.75rem 0 0; color: var(--ink-soft); max-width: none; }
+  .cookiebar p a { color: var(--plum); }
+  .cookiebar__actions { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
+  .btn--sm { min-height: 2.25rem; padding: 0 1rem; font-size: 0.85rem; }
+  .btn--sm.btn--ghost { border-width: 1px; }
+  .cookiebar__actions .chev { margin-left: 0.15rem; }
+  .cookiebar__detail { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--line); display: grid; gap: 0.6rem; }
+  .cookiebar__row { display: flex; align-items: flex-start; gap: 0.75rem; }
+  .cookiebar__row p { margin-top: 0.15rem; font-size: 0.82rem; }
+  .cookiebar__row strong { font-size: 0.85rem; }
+  .cookiebar__required { font-size: 0.68rem; font-weight: 700; color: var(--ink-soft); text-transform: uppercase; letter-spacing: 0.06em; margin-left: 0.35rem; }
+  .cookiebar__check {
+    flex: none; width: 1.35rem; height: 1.35rem; margin-top: 0.15rem; display: grid; place-items: center;
+    border-radius: 0.4rem; border: 2px solid var(--ink-soft); background: var(--white); color: transparent; cursor: pointer;
+  }
+  .cookiebar__check:hover { border-color: var(--ink); }
+  .cookiebar__check.is-checked { background: var(--terra); border-color: var(--terra); color: var(--white); }
+  .cookiebar__check--locked { background: var(--sand-2); border-color: var(--line); color: var(--ink-soft); cursor: not-allowed; }
+  .cookiebar__save { display: flex; justify-content: flex-end; }
+</style>

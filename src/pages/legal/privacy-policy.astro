@@ -1,0 +1,99 @@
+---
+import Base from '../../layouts/Base.astro';
+import { SITE_NAME, AUTHOR_NAME, CONTACT_EMAIL, ADDRESS, ANALYTICS } from '../../config.mjs';
+
+const LAST_UPDATED = '22 September 2026';
+---
+
+<Base title="Privacy policy" description="How personal data is collected, used and protected on this site." noindex>
+  <Fragment set:html="<!-- DRAFT: written to match current site functionality. Have a solicitor review before relying on this. Update the data-sharing and cookies sections if tools change. -->" />
+  <section class="page-head">
+    <div class="wrap">
+      <p class="eyebrow">Legal</p>
+      <h1>Privacy policy</h1>
+      <p class="muted">Last updated: {LAST_UPDATED}</p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:1rem">
+    <div class="wrap">
+      <div class="notice">
+        <p><strong>[DRAFT: to be reviewed by a solicitor before this business relies on it.]</strong> This page is written to match how the site actually works today. If the payment processor, form provider, hosting provider or analytics tool ever change, this page needs to change with them.</p>
+      </div>
+
+      <div class="prose">
+        <h2>1. Who we are</h2>
+        <p>This website is run by {AUTHOR_NAME}, trading as {SITE_NAME}, a sole trader and SEND education consultant registered with HMRC as self-employed. For the purposes of UK data protection law, {AUTHOR_NAME} is the "data controller" for the personal data this site collects — the person responsible for deciding how and why it's used.</p>
+        <p>
+          Contact address: {ADDRESS}<br />
+          Contact email: {CONTACT_EMAIL}
+        </p>
+        <p>This business is entirely separate from any other organisation {AUTHOR_NAME} is involved with. Nothing on this page, or anywhere else on this site, applies to or is shared with any other organisation.</p>
+
+        <h2>2. What personal data is collected, and why</h2>
+        <p><strong>Enquiry form.</strong> The contact form asks for your name, email address, organisation, role and message, and optionally which package you're asking about. This is used only to reply to your enquiry, and to keep a record of the conversation if it leads to further work.</p>
+        <p><strong>Buying a digital resource.</strong> Payment for digital resources is taken on a page hosted by <strong>[PAYMENT PROCESSOR — e.g. Stripe or Payhip, to be confirmed]</strong>, not on this site. That means your name, email address and billing details (such as card details) are collected and stored by <strong>[PAYMENT PROCESSOR]</strong> directly, under its own privacy policy, and are never entered into or stored on this website. {AUTHOR_NAME} receives confirmation that an order was placed and the buyer's name and email address, so the resource can be delivered and any support queries handled.</p>
+        <p><strong>Newsletter or mailing list.</strong> There is currently no newsletter or mailing list on this site, and no email address is collected for marketing purposes. If one is added in future, this section will be updated to name the provider used, explain what's collected, and describe how to unsubscribe.</p>
+        <p><strong>Website analytics.</strong> {ANALYTICS.enabled
+          ? <>This site uses <strong>Plausible</strong>, a privacy-friendly analytics tool, to see roughly how many people visit and which pages are useful. Plausible does not use cookies and does not collect personal data such as your name, email address or IP address in a form that identifies you. It is only used if you agree to it in the cookie banner shown when you first visit — see "Cookies" below.</>
+          : <>Analytics are not currently switched on for this site. If they are turned on in future, this site is set up to use <strong>Plausible</strong>, a privacy-friendly, cookie-free analytics tool, and visitors will be asked first via an on-page banner. This section will be updated to reflect that change when it happens.</>
+        }</p>
+
+        <h2>3. Our legal basis for using your data</h2>
+        <p>Under UK GDPR, personal data can only be used if there's a valid legal reason. Here's the reason for each use above:</p>
+        <ul>
+          <li><strong>Enquiry form:</strong> legitimate interests — responding to a business enquiry you've chosen to send — and, where it leads towards a contract for services, to take the steps needed to set that up.</li>
+          <li><strong>Buying a resource:</strong> performance of a contract — to deliver what you've paid for — and, for records kept afterwards, a legal obligation to keep accounting and tax records.</li>
+          <li><strong>Newsletter (if added later):</strong> consent, given by you when you sign up, which you can withdraw at any time.</li>
+          <li><strong>Analytics (if switched on):</strong> legitimate interests — understanding which pages are useful, using a tool designed to have as little impact on your privacy as reasonably possible.</li>
+        </ul>
+
+        <h2>4. How long data is kept</h2>
+        <p>Enquiries that don't lead to further work are normally kept for up to 12 months, then deleted. Records connected to a paid order — including invoices and correspondence — are normally kept for 6 years, in line with HMRC's record-keeping requirements for a self-employed sole trader. You can ask for enquiry details to be deleted sooner; see "Your rights" below.</p>
+
+        <h2>5. Who data is shared with</h2>
+        <p>Personal data is shared only with the services that are needed to run this site and deliver what you've asked for:</p>
+        <ul>
+          <li><strong>Netlify Forms</strong> — receives and stores enquiry form submissions, so they can be read and replied to.</li>
+          <li><strong>[PAYMENT PROCESSOR — e.g. Stripe or Payhip, to be confirmed]</strong> — handles payment and billing details for digital resources, and tells {AUTHOR_NAME} that an order was placed.</li>
+          <li><strong>[HOSTING PROVIDER — e.g. Netlify or Cloudflare Pages, to be confirmed]</strong> — hosts this website and, as with any web server, keeps basic technical logs (such as IP address and page requested) for security and reliability.</li>
+          <li><strong>Plausible</strong> — if analytics are switched on (see above), processes anonymous visit statistics only.</li>
+        </ul>
+        <p>Your data is never sold, and it is never shared with anyone else for their own marketing purposes.</p>
+
+        <h2>6. Cookies</h2>
+        <p>This site does not set any cookies for tracking or advertising. {ANALYTICS.enabled
+          ? <>The analytics tool it uses, Plausible, is cookie-free by design. Your choice about analytics (yes or no) is remembered using your browser's local storage on your own device, not a cookie — it isn't shared with anyone and never reaches {AUTHOR_NAME}. You can change your choice at any time using "Cookie settings" in the footer.</>
+          : <>Analytics are currently switched off, so nothing is stored on your device for that purpose either. If that changes, you'll be asked first via an on-page banner, and this section will be updated.</>
+        } There is no separate cookie policy at this time, because there is nothing beyond what's described here to explain.</p>
+
+        <h2>7. Keeping data secure</h2>
+        <p>Reasonable technical and organisational steps are taken to protect personal data, including: sending the site itself only over an encrypted (HTTPS) connection; keeping access to the enquiry form and order records limited to {AUTHOR_NAME}; and relying on established providers (named above) for payment and hosting, who maintain their own security standards. No method of storing or sending data online is completely without risk, but reasonable care is taken to reduce that risk.</p>
+
+        <h2>8. International transfers</h2>
+        <p>This site and its hosting are intended to operate within the UK and EU. If the payment processor chosen above is based outside the UK (for example, in the United States), your billing details may be processed there; providers such as Stripe and Payhip commit to recognised safeguards (such as the UK's International Data Transfer Agreement or Standard Contractual Clauses) for that. Once the payment processor is confirmed, this section will be updated to say plainly whether this applies.</p>
+
+        <h2>9. Your rights</h2>
+        <p>Under UK GDPR, you have the right to:</p>
+        <ul>
+          <li>ask for a copy of the personal data held about you (right of access);</li>
+          <li>ask for it to be corrected if it's wrong (rectification);</li>
+          <li>ask for it to be deleted, in some circumstances (erasure);</li>
+          <li>ask for its use to be limited, in some circumstances (restriction);</li>
+          <li>object to it being used, in some circumstances (objection); and</li>
+          <li>ask for a copy in a format you can reuse elsewhere (portability), where that applies.</li>
+        </ul>
+        <p>To use any of these rights, contact {AUTHOR_NAME} at {CONTACT_EMAIL}. If you're unhappy with how your data has been handled, you can also complain to the UK's data protection regulator, the Information Commissioner's Office, at <a href="https://ico.org.uk" target="_blank" rel="noopener noreferrer">ico.org.uk<span class="visually-hidden"> (opens in a new tab)</span></a>.</p>
+
+        <h2>10. Children's data</h2>
+        <p>This site and its services are aimed at professionals and other adults working in schools, colleges and local authorities — not at children. It is not marketed to children, and no personal data is knowingly collected from children.</p>
+
+        <h2>11. Changes to this policy</h2>
+        <p>This policy may be updated from time to time, particularly if the tools or services this site uses change. The date at the top of this page shows when it was last updated. Significant changes will be reflected here; there is no separate notification list to update, since none exists.</p>
+
+        <h2>12. Contact us</h2>
+        <p>Questions or complaints about how personal data is used on this site can be sent to {AUTHOR_NAME} at {CONTACT_EMAIL}, or by post to {ADDRESS}.</p>
+      </div>
+    </div>
+  </section>
+</Base>

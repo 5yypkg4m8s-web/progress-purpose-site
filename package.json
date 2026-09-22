@@ -1,0 +1,16 @@
+{
+  "name": "send-transition-resources",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.0.0",
+    "@fontsource-variable/source-serif-4": "^5.0.0",
+    "@fontsource/atkinson-hyperlegible": "^5.0.0",
+    "astro": "^7.0.0"
+  }
+}

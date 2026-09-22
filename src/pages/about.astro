@@ -1,0 +1,38 @@
+---
+import Base from '../layouts/Base.astro';
+import { AUTHOR_NAME, LINKEDIN_URL } from '../config.mjs';
+const initials = AUTHOR_NAME.split(' ').map((w) => w[0]).join('').slice(0, 2);
+---
+<Base title="About" description={`About ${AUTHOR_NAME}: MSc in Autism Studies and more than five years' frontline experience supporting young people with SEND in post-16 settings.`}>
+  <section class="page-head">
+    <div class="wrap">
+      <p class="eyebrow">About</p>
+      <h1>Practical resources from frontline experience.</h1>
+    </div>
+  </section>
+  <section class="section" style="padding-top:1rem">
+    <div class="wrap split">
+      <div class="prose">
+        <p class="lede">I'm {AUTHOR_NAME}. I create SEND transition resources and written packages for schools, colleges and local authorities.</p>
+        <p>I hold an MSc in Autism Studies and have more than five years' frontline experience supporting young people with SEND in post-16 settings. That work is what shapes these resources: they are designed to be clear, usable and easy to adapt.</p>
+        <h2>How I work</h2>
+        <ul>
+          <li>Written, advisory and product-based only. I do not offer live training, workshops or events.</li>
+          <li>Plain UK English, in editable formats.</li>
+          <li>Quotes are agreed in writing before any work begins.</li>
+        </ul>
+        <h2>Credentials</h2>
+        <ul>
+          <li>MSc in Autism Studies</li>
+          <li>More than five years' frontline experience in post-16 SEND settings</li>
+          <li>[Optional: other credentials]</li>
+        </ul>
+        <div class="actions"><a class="btn btn--primary" href="/contact/">Get in touch</a>
+          <a class="btn btn--ghost btn--plain" href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer">Connect on LinkedIn<span class="visually-hidden"> (opens in a new tab)</span></a></div>
+      </div>
+      <div class="aside" aria-hidden="true" style="text-align:center">
+        <span class="monogram" style="width:7rem;height:7rem;font-size:2.5rem;margin:0 auto">{initials}</span>
+      </div>
+    </div>
+  </section>
+</Base>

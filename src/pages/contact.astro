@@ -1,0 +1,74 @@
+---
+import Base from '../layouts/Base.astro';
+import data from '../../content/products.json';
+import { CONTACT_EMAIL, ADDRESS, RESPONSE_TIME, LINKEDIN_URL } from '../config.mjs';
+const emailIsReal = CONTACT_EMAIL.includes('@') && !CONTACT_EMAIL.includes('[');
+---
+<Base title="Contact and enquiries" description="Request a quote or ask a question about SEND transition resources and written packages for schools, colleges and local authorities.">
+  <section class="section">
+    <div class="wrap">
+      <div class="contact">
+        <svg class="plus plus--tl" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><svg class="plus plus--tr" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><svg class="plus plus--bl" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><svg class="plus plus--br" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+        <div class="contact__info">
+          <p class="eyebrow">Contact</p>
+          <h1>Request a quote or ask a question.</h1>
+          <p class="lede">Tell me a little about your setting and what you need. I'll reply by email.</p>
+          <ul class="contact__list">
+            <li><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-10 6L2 7"/></svg><div><strong>Email</strong>{emailIsReal ? <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a> : <span>{CONTACT_EMAIL}</span>}</div></li>
+            <li><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg><div><strong>Address</strong><address>{ADDRESS}</address></div></li>
+            <li><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><div><strong>Usual reply time</strong><span>{RESPONSE_TIME}</span></div></li>
+            <li><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg><div><strong>LinkedIn</strong><a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer">View profile<span class="visually-hidden"> (opens in a new tab)</span></a></div></li>
+          </ul>
+        </div>
+        <div class="contact__form">
+          <!-- Netlify Forms. To use Formspree instead, see the README. -->
+          <form class="form" name="enquiry" method="POST" action="/thanks/" data-netlify="true" netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="enquiry" />
+        <p class="hp" aria-hidden="true"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>
+        <div class="two">
+          <div class="field"><label for="name">Your name</label><input type="text" id="name" name="name" autocomplete="name" required /></div>
+          <div class="field"><label for="email">Email address</label><input type="email" id="email" name="email" autocomplete="email" required /></div>
+        </div>
+        <div class="two">
+          <div class="field"><label for="organisation">Organisation</label><input type="text" id="organisation" name="organisation" autocomplete="organization" required /></div>
+          <div class="field"><label for="role">Your role</label><input type="text" id="role" name="role" autocomplete="organization-title" required /></div>
+        </div>
+        <div class="field">
+          <label for="package">Which package are you asking about?</label>
+          <select id="package" name="package">
+            <option value="">Choose one</option>
+            {data.services.map((s) => <option value={s.id}>{s.name}</option>)}
+            <option value="resources">A question about resources</option>
+            <option value="other">Something else</option>
+          </select>
+        </div>
+        <div class="field"><label for="message">Message</label><textarea id="message" name="message" required></textarea></div>
+        <div class="check">
+          <input type="checkbox" id="privacy" name="privacy" required />
+          <label for="privacy">I have read the <a href="/legal/privacy-policy/">privacy policy</a> and am happy for my details to be used to reply to this enquiry.</label>
+        </div>
+        <div><button class="btn btn--primary" type="submit">Send enquiry</button></div>
+      </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .contact { position: relative; display: grid; background: var(--white); border: 1px solid var(--line); box-shadow: var(--shadow); }
+  @media (min-width: 1000px) { .contact { grid-template-columns: 1fr 1.1fr; } }
+  .contact__info { padding: clamp(1.5rem, 4vw, 3rem); }
+  .contact__info h1 { font-size: clamp(2rem, 5vw, 3.2rem); }
+  .contact__form { padding: clamp(1.25rem, 3vw, 2.5rem); background: var(--sand-2); border-top: 1px solid var(--line); }
+  @media (min-width: 1000px) { .contact__form { border-top: 0; border-left: 1px solid var(--line); } }
+  .contact__list { list-style: none; padding: 0; margin: 2rem 0 0; display: grid; gap: 0.75rem; }
+  .contact__list li { display: flex; gap: 1rem; align-items: center; }
+  .contact__list svg { flex: none; box-sizing: content-box; padding: 0.75rem; border-radius: 0.75rem; background: var(--sand-2); color: var(--plum); }
+  .contact__list strong { display: block; }
+  .plus { position: absolute; color: var(--ink); }
+  .plus--tl { top: -12px; left: -12px; } .plus--tr { top: -12px; right: -12px; }
+  .plus--bl { bottom: -12px; left: -12px; } .plus--br { bottom: -12px; right: -12px; }
+  .contact__form :global(.two) { grid-template-columns: 1fr; }
+  @media (min-width: 1300px) { .contact__form :global(.two) { grid-template-columns: 1fr 1fr; } }
+</style>

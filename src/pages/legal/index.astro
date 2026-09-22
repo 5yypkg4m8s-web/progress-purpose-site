@@ -1,0 +1,10 @@
+---
+import Base from '../../layouts/Base.astro';
+import { LEGAL_NAV } from '../../config.mjs';
+---
+<Base title="Legal" description="Terms of sale, privacy policy, refunds and digital delivery, and licence terms.">
+  <section class="page-head"><div class="wrap"><p class="eyebrow">Legal</p><h1>Legal information</h1></div></section>
+  <section class="section" style="padding-top:1rem"><div class="wrap">
+    <ul class="link-list">{LEGAL_NAV.map((i) => <li><a href={i.href}>{i.label}</a></li>)}</ul>
+  </div></section>
+</Base>
