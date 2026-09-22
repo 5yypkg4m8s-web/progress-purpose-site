@@ -21,7 +21,7 @@ const initials = AUTHOR_NAME.split(' ').map((w) => w[0]).join('').slice(0, 2);
         <rect class="s2" x="110" y="220" width="90" height="170" rx="14" />
         <rect class="s1" x="210" y="150" width="90" height="240" rx="14" />
         <rect class="s4" x="310" y="80" width="80" height="310" rx="14" />
-        <path class="path" d="M55 265 C 120 200, 170 200, 250 125 S 330 60, 350 45" />
+        <path id="heroPath" class="path" d="M55 265 C 120 200, 170 200, 250 125 S 330 60, 350 45" />
         <circle class="s3" cx="350" cy="45" r="20" />
       </svg>
     </div>
@@ -83,4 +83,32 @@ const initials = AUTHOR_NAME.split(' ').map((w) => w[0]).join('').slice(0, 2);
       </div>
     </div>
   </section>
+
+  <script>
+    // The hero's ball climbs the dotted path and rolls back down, on a loop.
+    // Skipped entirely for reduced motion — the ball just stays put at the top,
+    // exactly as it always has.
+    if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      const ball = document.querySelector('.hero__art circle.s3');
+      const svgNS = 'http://www.w3.org/2000/svg';
+      if (ball) {
+        // The path already ends at (350,45), where the ball sits by default — start
+        // and end the loop there too (keyPoints 1→0→1) so nothing jumps on load or repeat.
+        const anim = document.createElementNS(svgNS, 'animateMotion');
+        anim.setAttribute('dur', '7s');
+        anim.setAttribute('repeatCount', 'indefinite');
+        anim.setAttribute('calcMode', 'spline');
+        anim.setAttribute('keyPoints', '1;0;1');
+        anim.setAttribute('keyTimes', '0;0.5;1');
+        anim.setAttribute('keySplines', '0.42 0 0.58 1;0.42 0 0.58 1');
+        const mpath = document.createElementNS(svgNS, 'mpath');
+        mpath.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', '#heroPath');
+        mpath.setAttribute('href', '#heroPath');
+        anim.appendChild(mpath);
+        ball.setAttribute('cx', '0');
+        ball.setAttribute('cy', '0');
+        ball.appendChild(anim);
+      }
+    }
+  </script>
 </Base>
