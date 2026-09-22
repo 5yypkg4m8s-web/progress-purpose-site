@@ -85,13 +85,14 @@
       "id": "one-to-one-coaching",
       "cover": "plum",
       "name": "1:1 Coaching",
-      "summary": "Focused one-to-one coaching for staff, or for parents and carers, working through transition planning.",
+      "summary": "Private coaching for one individual at a time, working through transition planning. A school can book this for a member of staff, or a parent or carer can book it for themselves.",
       "includes": [
-        "One-to-one, by video call or phone",
+        "Always one-to-one — never a group or shared session",
+        "By video call or phone",
         "Booked as a single session or a 4-session block",
         "Short follow-up notes after each session"
       ],
-      "forWho": "Individual staff members, or parents and carers, wanting focused 1:1 support rather than a written package.",
+      "forWho": "One individual at a time: a member of staff, booked and paid for by their school, or a parent or carer, booking for themselves.",
       "fee": "£55/hour, or £195 for a 4-session block",
       "cta": "Enquire about coaching"
     },
