@@ -8,5 +8,5 @@ const before = cut === -1 ? SITE_NAME : SITE_NAME.slice(0, cut);
 const after = cut === -1 ? '' : SITE_NAME.slice(cut + SEP.length);
 ---
 <a class="wordmark" href="/">
-  {before}{cut !== -1 && <>&nbsp;<span class="wordmark__amp">&amp;</span>&nbsp;{after}</>}
+  <span class="wordmark__text">{before}{cut !== -1 && <> <span class="wordmark__amp">&amp;</span> {after}</>}</span>
 </a>
