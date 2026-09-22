@@ -54,8 +54,16 @@ const path = Astro.url.pathname;
 
 <style>
   .floatnav {
-    position: fixed; left: 50%; bottom: 1.5rem; transform: translateX(-50%); z-index: 80;
-    display: flex; flex-direction: column; align-items: center;
+    /* Phone-only: on desktop the full header nav is already visible, so a
+       floating duplicate doesn't add anything. Same breakpoint the header
+       uses to switch to its own mobile menu button. */
+    display: none;
+  }
+  @media (max-width: 859px) {
+    .floatnav {
+      position: fixed; left: 50%; bottom: 1.5rem; transform: translateX(-50%); z-index: 80;
+      display: flex; flex-direction: column; align-items: center;
+    }
   }
   @media (max-width: 420px) { .floatnav { bottom: 1rem; } }
 
