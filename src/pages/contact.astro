@@ -24,7 +24,7 @@ const emailBreakable = CONTACT_EMAIL.replace('@', '@<wbr>');
         </div>
         <div class="contact__form">
           <!-- Netlify Forms. To use Formspree instead, see the README. -->
-          <form class="form" name="enquiry" method="POST" action="/thanks/" data-netlify="true" netlify-honeypot="bot-field">
+          <form class="form" id="enquiry-form" name="enquiry" method="POST" action="/thanks/" data-netlify="true" netlify-honeypot="bot-field">
         <input type="hidden" name="form-name" value="enquiry" />
         <p class="hp" aria-hidden="true"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>
         <div class="two">
@@ -50,6 +50,7 @@ const emailBreakable = CONTACT_EMAIL.replace('@', '@<wbr>');
           <input type="checkbox" id="privacy" name="privacy" required />
           <label for="privacy">I have read the <a href="/legal/privacy-policy/">privacy policy</a> and am happy for my details to be used to reply to this enquiry.</label>
         </div>
+        <p class="form-summary error" id="form-summary" role="alert" hidden></p>
         <div><button class="btn btn--primary" type="submit">Send enquiry</button></div>
       </form>
         </div>
@@ -57,6 +58,74 @@ const emailBreakable = CONTACT_EMAIL.replace('@', '@<wbr>');
     </div>
   </section>
 </Base>
+
+<script>
+  // Inline validation messages. Without JavaScript the browser's own required-field
+  // checks still run, so the form works either way; this replaces them with messages
+  // shown beside each field.
+  const form = document.getElementById('enquiry-form') as HTMLFormElement | null;
+  const summary = document.getElementById('form-summary');
+  if (form && summary) {
+    form.noValidate = true;
+    const messages: Record<string, string> = {
+      name: 'Please enter your name.',
+      email: 'Please enter your email address.',
+      organisation: 'Please enter your organisation.',
+      role: 'Please enter your role.',
+      message: 'Please write a short message.',
+      privacy: 'Please tick the box to confirm you have read the privacy policy.',
+    };
+    const fields = Array.from(form.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>('[required]'));
+
+    const errorFor = (el: HTMLElement) => document.getElementById(el.id + '-error');
+    const clear = (el: HTMLInputElement | HTMLTextAreaElement) => {
+      el.removeAttribute('aria-invalid');
+      const err = errorFor(el);
+      if (err) err.remove();
+      const ids = (el.getAttribute('aria-describedby') || '').split(' ').filter((i) => i && i !== el.id + '-error');
+      ids.length ? el.setAttribute('aria-describedby', ids.join(' ')) : el.removeAttribute('aria-describedby');
+    };
+    const show = (el: HTMLInputElement | HTMLTextAreaElement) => {
+      clear(el);
+      let text = messages[el.id] || 'Please fill in this field.';
+      if (el.type === 'email' && el.value.trim() && el.validity.typeMismatch) {
+        text = 'Please enter a valid email address, like name@example.com.';
+      }
+      const err = document.createElement('p');
+      err.className = 'field-error';
+      err.id = el.id + '-error';
+      err.textContent = text;
+      const holder = el.closest('.field') || el.closest('.check');
+      holder?.appendChild(err);
+      el.setAttribute('aria-invalid', 'true');
+      el.setAttribute('aria-describedby', [el.getAttribute('aria-describedby'), err.id].filter(Boolean).join(' '));
+    };
+    const invalid = () => fields.filter((el) => !el.checkValidity() || (el.type !== 'checkbox' && !el.value.trim()));
+
+    form.addEventListener('submit', (e) => {
+      const bad = invalid();
+      fields.forEach((el) => (bad.includes(el) ? show(el) : clear(el)));
+      if (bad.length) {
+        e.preventDefault();
+        summary.hidden = false;
+        summary.textContent = bad.length === 1 ? 'There is 1 thing to fix before sending.' : `There are ${bad.length} things to fix before sending.`;
+        bad[0].focus();
+      } else {
+        summary.hidden = true;
+      }
+    });
+    // Once a message is showing, remove it as soon as that field is put right.
+    const recheck = (el: HTMLInputElement | HTMLTextAreaElement) => {
+      if (el.getAttribute('aria-invalid') !== 'true') return;
+      if (!invalid().includes(el)) clear(el);
+      if (!fields.some((f) => f.getAttribute('aria-invalid') === 'true')) summary.hidden = true;
+    };
+    fields.forEach((el) => {
+      el.addEventListener('input', () => recheck(el));
+      el.addEventListener('change', () => recheck(el));
+    });
+  }
+</script>
 
 <style>
   .contact { position: relative; display: grid; background: var(--white); border: 1px solid var(--line); box-shadow: var(--shadow); }

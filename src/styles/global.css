@@ -272,6 +272,14 @@ input:focus-visible, select:focus-visible, textarea:focus-visible { border-color
 .check { display: flex; gap: 0.85rem; align-items: flex-start; }
 .check input { width: 1.4rem; height: 1.4rem; margin-top: 0.2rem; flex: none; accent-color: var(--terra); }
 .two { display: grid; gap: 1.4rem; }
+/* Validation messages: terracotta-dark text with a leading mark, so the message never relies on colour alone. */
+.field-error, .form-summary { color: var(--terra-dark); font-weight: 700; margin: 0; }
+.field-error::before, .form-summary::before { content: '\26A0\FE0E\00a0'; }
+.check:has(.field-error) { display: grid; grid-template-columns: auto 1fr; column-gap: 0.85rem; }
+.check .field-error { grid-column: 2; margin-top: 0.4rem; }
+input[aria-invalid='true'], select[aria-invalid='true'], textarea[aria-invalid='true'] { border-color: var(--terra-dark); }
+.check input[aria-invalid='true'] { outline: 2px solid var(--terra-dark); outline-offset: 2px; }
+.form-summary[hidden] { display: none; }
 .hp { position: absolute; left: -9999px; }
 .split { display: grid; gap: 3rem; }
 @media (min-width: 900px) { .split { grid-template-columns: 1.4fr 0.6fr; gap: 5rem; } }
