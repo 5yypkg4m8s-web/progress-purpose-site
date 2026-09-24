@@ -1,8 +1,8 @@
 ---
 import Base from '../../layouts/Base.astro';
-import { SITE_NAME, AUTHOR_NAME, CONTACT_EMAIL, ADDRESS, ANALYTICS } from '../../config.mjs';
+import { SITE_NAME, AUTHOR_NAME, CONTACT_EMAIL, ADDRESS, ANALYTICS, PAYMENT_PLATFORM, MAILING_LIST } from '../../config.mjs';
 
-const LAST_UPDATED = '22 September 2026';
+const LAST_UPDATED = '24 September 2026';
 ---
 
 <Base title="Privacy policy" description="How personal data is collected, used and protected on this site." noindex>
@@ -32,8 +32,11 @@ const LAST_UPDATED = '22 September 2026';
 
         <h2>2. What personal data is collected, and why</h2>
         <p><strong>Enquiry form.</strong> The contact form asks for your name, email address, organisation, role and message, and optionally which package you're asking about. This is used only to reply to your enquiry, and to keep a record of the conversation if it leads to further work.</p>
-        <p><strong>Buying a digital resource.</strong> Payment for digital resources is taken on a page hosted by <strong>[PAYMENT PROCESSOR — e.g. Stripe or Payhip, to be confirmed]</strong>, not on this site. That means your name, email address and billing details (such as card details) are collected and stored by <strong>[PAYMENT PROCESSOR]</strong> directly, under its own privacy policy, and are never entered into or stored on this website. {AUTHOR_NAME} receives confirmation that an order was placed and the buyer's name and email address, so the resource can be delivered and any support queries handled.</p>
-        <p><strong>Newsletter or mailing list.</strong> The Parent and Carer Guide on the Resources page is planned to be offered in exchange for signing up to a mailing list, but that sign-up isn't switched on yet — no email address is currently collected for marketing purposes anywhere on this site. Once it is, this section will be updated first, to name the mailing list provider used, explain what's collected and why, and describe how to unsubscribe at any time.</p>
+        <p><strong>Buying a digital resource.</strong> Payment for digital resources is taken on a page hosted by <strong>{PAYMENT_PLATFORM}</strong>, not on this site. That means your name, email address and billing details (such as card details) are collected by {PAYMENT_PLATFORM} directly, under its own privacy policy, and are never entered into or stored on this website. {PAYMENT_PLATFORM} uses payment services such as Stripe and PayPal to take card payments. {AUTHOR_NAME} receives confirmation that an order was placed and the buyer's name and email address, so the resource can be delivered and any support queries handled.</p>
+        <p><strong>Mailing list.</strong> {MAILING_LIST.live
+          ? <>If you download the free Parent and Carer Guide, {PAYMENT_PLATFORM} asks for your email address so the guide can be sent to you, and gives you the choice of also joining the mailing list. Not joining does not affect your download. If you do join, your email address is added to a list held by <strong>{MAILING_LIST.provider}</strong> and used only to send occasional updates about new resources. Every email includes an unsubscribe link, and you can also ask to be removed by emailing {CONTACT_EMAIL}.</>
+          : <>The free Parent and Carer Guide on the Resources page will be offered through {PAYMENT_PLATFORM}, with the choice of also joining a mailing list held by {MAILING_LIST.provider}. That isn't switched on yet, so no email address is currently collected for marketing purposes anywhere on this site. Once it is, this section will say exactly what is collected, why, and how to unsubscribe.</>
+        }</p>
         <p><strong>Website analytics.</strong> {ANALYTICS.enabled
           ? <>This site uses <strong>Plausible</strong>, a privacy-friendly analytics tool, to see roughly how many people visit and which pages are useful. Plausible does not use cookies and does not collect personal data such as your name, email address or IP address in a form that identifies you. It is only used if you agree to it in the cookie banner shown when you first visit — see "Cookies" below.</>
           : <>Analytics are not currently switched on for this site. If they are turned on in future, this site is set up to use <strong>Plausible</strong>, a privacy-friendly, cookie-free analytics tool, and visitors will be asked first via an on-page banner. This section will be updated to reflect that change when it happens.</>
@@ -44,7 +47,7 @@ const LAST_UPDATED = '22 September 2026';
         <ul>
           <li><strong>Enquiry form:</strong> legitimate interests — responding to a business enquiry you've chosen to send — and, where it leads towards a contract for services, to take the steps needed to set that up.</li>
           <li><strong>Buying a resource:</strong> performance of a contract — to deliver what you've paid for — and, for records kept afterwards, a legal obligation to keep accounting and tax records.</li>
-          <li><strong>Newsletter (if added later):</strong> consent, given by you when you sign up, which you can withdraw at any time.</li>
+          <li><strong>Mailing list (once switched on):</strong> consent, given when you tick the opt-in box, which you can withdraw at any time by unsubscribing.</li>
           <li><strong>Analytics (if switched on):</strong> legitimate interests — understanding which pages are useful, using a tool designed to have as little impact on your privacy as reasonably possible.</li>
         </ul>
 
@@ -54,9 +57,9 @@ const LAST_UPDATED = '22 September 2026';
         <h2>5. Who data is shared with</h2>
         <p>Personal data is shared only with the services that are needed to run this site and deliver what you've asked for:</p>
         <ul>
-          <li><strong>Netlify Forms</strong> — receives and stores enquiry form submissions, so they can be read and replied to.</li>
-          <li><strong>[PAYMENT PROCESSOR — e.g. Stripe or Payhip, to be confirmed]</strong> — handles payment and billing details for digital resources, and tells {AUTHOR_NAME} that an order was placed.</li>
-          <li><strong>[HOSTING PROVIDER — e.g. Netlify or Cloudflare Pages, to be confirmed]</strong> — hosts this website and, as with any web server, keeps basic technical logs (such as IP address and page requested) for security and reliability.</li>
+          <li><strong>Netlify</strong> — hosts this website, receives and stores enquiry form submissions so they can be read and replied to, and, as with any web server, keeps basic technical logs (such as IP address and page requested) for security and reliability.</li>
+          <li><strong>{PAYMENT_PLATFORM}</strong> — handles payment and billing details for digital resources, delivers your download, and tells {AUTHOR_NAME} that an order was placed. It uses payment services such as Stripe and PayPal to take card payments.</li>
+          {MAILING_LIST.live && <li><strong>{MAILING_LIST.provider}</strong> — holds the mailing list, if you choose to join it (see above).</li>}
           <li><strong>Plausible</strong> — if analytics are switched on (see above), processes anonymous visit statistics only.</li>
         </ul>
         <p>Your data is never sold, and it is never shared with anyone else for their own marketing purposes.</p>
@@ -71,7 +74,7 @@ const LAST_UPDATED = '22 September 2026';
         <p>Reasonable technical and organisational steps are taken to protect personal data, including: sending the site itself only over an encrypted (HTTPS) connection; keeping access to the enquiry form and order records limited to {AUTHOR_NAME}; and relying on established providers (named above) for payment and hosting, who maintain their own security standards. No method of storing or sending data online is completely without risk, but reasonable care is taken to reduce that risk.</p>
 
         <h2>8. International transfers</h2>
-        <p>This site and its hosting are intended to operate within the UK and EU. If the payment processor chosen above is based outside the UK (for example, in the United States), your billing details may be processed there; providers such as Stripe and Payhip commit to recognised safeguards (such as the UK's International Data Transfer Agreement or Standard Contractual Clauses) for that. Once the payment processor is confirmed, this section will be updated to say plainly whether this applies.</p>
+        <p>Some of the services named above are based in, or process data in, countries outside the UK — for example Netlify, which is a US company, and the payment services {PAYMENT_PLATFORM} uses. Where personal data is sent outside the UK, UK law requires it to be protected by approved safeguards; each provider describes the ones it uses in its own privacy policy.</p>
 
         <h2>9. Your rights</h2>
         <p>Under UK GDPR, you have the right to:</p>
@@ -89,7 +92,7 @@ const LAST_UPDATED = '22 September 2026';
         <p>This site and its services are aimed at professionals and other adults working in schools, colleges and local authorities — not at children. It is not marketed to children, and no personal data is knowingly collected from children.</p>
 
         <h2>11. Changes to this policy</h2>
-        <p>This policy may be updated from time to time, particularly if the tools or services this site uses change. The date at the top of this page shows when it was last updated. Significant changes will be reflected here; there is no separate notification list to update, since none exists.</p>
+        <p>This policy may be updated from time to time, particularly if the tools or services this site uses change. The date at the top of this page shows when it was last updated. Significant changes will be reflected here.</p>
 
         <h2>12. Contact us</h2>
         <p>Questions or complaints about how personal data is used on this site can be sent to {AUTHOR_NAME} at {CONTACT_EMAIL}, or by post to {ADDRESS}.</p>

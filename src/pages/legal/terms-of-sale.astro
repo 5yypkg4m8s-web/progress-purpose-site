@@ -1,9 +1,8 @@
 ---
 import Base from '../../layouts/Base.astro';
-import { SITE_NAME, AUTHOR_NAME, CONTACT_EMAIL, ADDRESS } from '../../config.mjs';
+import { SITE_NAME, AUTHOR_NAME, CONTACT_EMAIL, ADDRESS, PAYMENT_PLATFORM } from '../../config.mjs';
 
-const LAST_UPDATED = '22 September 2026';
-const PAYMENT_PLATFORM = '[PAYMENT PLATFORM — e.g. Stripe or Payhip, to be confirmed]';
+const LAST_UPDATED = '24 September 2026';
 ---
 
 <Base title="Terms and conditions of sale" description="The terms that apply when you buy a digital resource or book a written service from this site." noindex>
@@ -38,7 +37,7 @@ const PAYMENT_PLATFORM = '[PAYMENT PLATFORM — e.g. Stripe or Payhip, to be con
         </ul>
 
         <h2>3. Prices and payment</h2>
-        <p>Prices for digital products are shown on the Resources page in pounds sterling (GBP), inclusive of any fees the payment platform itself charges you. {AUTHOR_NAME} is not currently registered for VAT, so no VAT is added to prices.</p>
+        <p>Prices for digital products are shown on the Resources page in pounds sterling (GBP). {AUTHOR_NAME} is not registered for VAT. For digital products bought from the UK or EU, {PAYMENT_PLATFORM} handles any VAT due on the sale as part of its checkout, and the total you will pay, including any VAT, is shown before you confirm your order.</p>
         <p>Payment for digital products is taken securely by <strong>{PAYMENT_PLATFORM}</strong>, a third-party payment platform. Card and billing details are entered on that platform's own page, not on this site — see the <a href="/legal/privacy-policy/">privacy policy</a> for more on how that works.</p>
         <p>Fees for written services are agreed with you in writing — usually by email — before any work begins, and are invoiced separately.</p>
 

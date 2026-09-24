@@ -1,6 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
-import { AUTHOR_NAME, LINKEDIN_URL } from '../config.mjs';
+import { AUTHOR_NAME, LINKEDIN_URL, FREE_SAMPLE } from '../config.mjs';
 const initials = AUTHOR_NAME.split(' ').map((w) => w[0]).join('').slice(0, 2);
 ---
 <Base home description="Editable SEND transition resources and written packages for schools, colleges and local authorities. Post-16, preparing for adulthood, autism and EHCP.">
@@ -59,18 +59,20 @@ const initials = AUTHOR_NAME.split(' ').map((w) => w[0]).join('').slice(0, 2);
     </div>
   </section>
 
-  <section class="section">
-    <div class="wrap">
-      <div class="callout" data-reveal>
-        <div>
-          <p class="eyebrow">Free sample</p>
-          <h2>Try a free template.</h2>
-          <p>Download a free sample to see the style and format before you buy. [SAMPLE TEMPLATE TITLE TO BE ADDED]</p>
+  {FREE_SAMPLE.url && (
+    <section class="section">
+      <div class="wrap">
+        <div class="callout" data-reveal>
+          <div>
+            <p class="eyebrow">Free sample</p>
+            <h2>Try a free template.</h2>
+            <p>Download a free sample to see the style and format before you buy.{FREE_SAMPLE.title && <> This one is: {FREE_SAMPLE.title}.</>}</p>
+          </div>
+          <a class="btn btn--primary" href={FREE_SAMPLE.url}>Get the free sample</a>
         </div>
-        <a class="btn btn--primary" href="/downloads/free-sample.pdf" download>Download free sample (PDF)</a>
       </div>
-    </div>
-  </section>
+    </section>
+  )}
 
   <section class="section section--dark">
     <div class="wrap">

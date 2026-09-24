@@ -1,5 +1,6 @@
 ---
 // Decorative only: no inputs, no card data. Real payment happens on the provider's hosted page.
+import { PAYMENT_PLATFORM } from '../config.mjs';
 ---
 <div class="pay">
   <div class="pay__card" aria-hidden="true">
@@ -11,7 +12,7 @@
     <h2>How buying works</h2>
     <ol class="pay__steps">
       <li>Choose a resource and tick the delivery box.</li>
-      <li>Pay on a secure page hosted by [PAYMENT PROVIDER: Stripe or PayPal]. Card details are never entered on this site.</li>
+      <li>Pay on a secure page hosted by {PAYMENT_PLATFORM}. Card details are never entered on this site.</li>
       <li>Your download is delivered straight away.</li>
     </ol>
   </div>

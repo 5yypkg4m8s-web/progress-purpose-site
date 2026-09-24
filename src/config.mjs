@@ -11,9 +11,31 @@ export const TAGLINE = 'Creating resources, consultancy and pathways for SEND tr
 
 // Placeholders until decided. Square brackets mark anything still to be replaced.
 export const SITE_URL = 'https://progresspurpose.co.uk'; // no trailing slash
-export const CONTACT_EMAIL = '[CONTACT EMAIL]';
+// The public address for quote requests and mailing-list questions. Any personal
+// address is deliberately kept out of the site and this repository.
+export const CONTACT_EMAIL = 'enquiries@progresspurpose.co.uk';
 export const ADDRESS = '[ADDRESS]';
 export const RESPONSE_TIME = '[RESPONSE TIME]';
+
+// The platform that takes payment and delivers downloads. Named on the Resources page,
+// the terms of sale and the privacy policy from this one value.
+export const PAYMENT_PLATFORM = 'Payhip';
+
+// Mailing list for the free Parent and Carer Guide. Payhip does not host a list itself:
+// it hands opted-in emails to a separate email service (Payhip has a direct MailerLite
+// integration; change `provider` if you choose another). Keep `live: false` until the
+// service is connected and tested; the privacy policy changes wording when it's true.
+export const MAILING_LIST = {
+  provider: 'MailerLite',
+  live: false,
+};
+
+// Free sample template on the home page. Leave `url` empty and the section is hidden.
+// Paste a Payhip free-product link (or a direct file link) and it appears.
+export const FREE_SAMPLE = {
+  url: '',
+  title: '',
+};
 
 // Shown next to buy buttons. Replace after a solicitor has reviewed it.
 export const DELIVERY_CONSENT =

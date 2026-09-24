@@ -2,6 +2,10 @@
 import Base from '../layouts/Base.astro';
 import ProductCard from '../components/ProductCard.astro';
 import data from '../../content/products.json';
+
+// An odd number of cards leaves the last one alone on its row in the two-column grid,
+// so an odd count gets a "not sure?" card in the empty slot. An even count needs none.
+const needsHelpCard = data.services.length % 2 === 1;
 ---
 <Base title="Packages for schools and local authorities" description="Written transition provision reviews, staff briefing packs, bespoke resources and local authority advisory. Quote on request.">
   <section class="page-head">
@@ -13,8 +17,27 @@ import data from '../../content/products.json';
   </section>
   <section class="section" style="padding-top:1rem">
     <div class="wrap">
-      <div class="grid grid--2">
+      <p class="eyebrow">What happens next</p>
+      <ul class="features" style="margin-top:0">
+        <li data-reveal><h3>Send an enquiry</h3><p>Tell me about your setting and what you need.</p></li>
+        <li data-reveal><h3>I reply by email</h3><p>With any questions, and a written quote, so you know the fee before anything starts.</p></li>
+        <li data-reveal><h3>Work begins once agreed</h3><p>Fees are agreed in writing before any work begins.</p></li>
+      </ul>
+
+      <div class="grid grid--2" style="margin-top:4rem">
         {data.services.map((item) => <ProductCard item={item} kind="service" />)}
+        {needsHelpCard && (
+          <article class="card card--help" data-reveal>
+            <div class="card__body">
+              <p class="card__kind">Not sure?</p>
+              <h3>Not sure which package fits?</h3>
+              <p>Tell me about your setting and what you're trying to achieve, and I'll suggest a sensible starting point.</p>
+              <div class="card__foot">
+                <a class="btn btn--light" href="/contact/?package=other">Ask a question</a>
+              </div>
+            </div>
+          </article>
+        )}
       </div>
       <div class="notice" style="margin-top:2.5rem">
         <p>All services are delivered in writing or as ready-made materials. Live group training, workshops and events are not offered.</p>
@@ -25,3 +48,12 @@ import data from '../../content/products.json';
     </div>
   </section>
 </Base>
+
+<style>
+  /* Top-aligned rather than stretched, so it doesn't become a tall empty dark block
+     beside the (much taller) card next to it. */
+  .card--help { background: var(--ink); color: var(--sand); border-color: var(--ink); align-self: start; }
+  .card--help h3 { color: var(--white); }
+  .card--help .card__kind { color: var(--sand); opacity: 0.8; }
+  .card--help .card__foot { margin-top: 1.25rem; }
+</style>
