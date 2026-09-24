@@ -1,3 +1,11 @@
+/* Breakpoints -------------------------------------------------------
+   Two steps only. CSS can't put variables inside media queries, so the values
+   are written out; use these two and nothing else.
+     tablet  640px  wider gutters, form fields and small grids go two-up
+     desktop 900px  full header nav, and every multi-column layout turns on together
+   Below 900px the site is a single-column layout with a menu button (phones and
+   tablets alike), and the floating quick-menu shows. */
+
 /* Tokens ------------------------------------------------------------ */
 :root {
   --sand: #faf6f0;
@@ -17,7 +25,7 @@
   --shadow: 0 1px 2px rgb(31 41 51 / 0.05), 0 12px 32px -12px rgb(31 41 51 / 0.18);
   --gutter: 1rem;
 }
-@media (min-width: 720px) {
+@media (min-width: 640px) {
   :root { --gutter: 2.5rem; }
 }
 
@@ -125,12 +133,14 @@ ul { padding-left: 1.2em; }
 .nav a:not(.btn):hover { background: var(--sand-2); }
 .nav a[aria-current='page'] { color: var(--plum); box-shadow: inset 0 -3px 0 var(--terra); border-radius: 0; }
 .nav .btn { min-height: 2.75rem; padding-inline: 1.25rem; }
+/* Just enough headroom that wordmark + full nav fit on one row from the 900px step (they need ~808px; 820px is available). */
+@media (min-width: 900px) { .nav a:not(.btn) { padding: 0 0.7rem; } }
 .menu-btn {
   display: none; align-items: center; gap: 0.5rem; min-height: 2.75rem; padding: 0 1rem;
   border: 2px solid var(--ink); border-radius: 999px; background: transparent; color: var(--ink);
   font: 700 1rem var(--sans); cursor: pointer;
 }
-@media (max-width: 859px) {
+@media (max-width: 899px) {
   .js .menu-btn { display: inline-flex; }
   .js .nav { display: none; width: 100%; padding-bottom: 1rem; }
   .js .nav.open { display: block; }
@@ -153,7 +163,7 @@ ul { padding-left: 1.2em; }
 
 /* Paths ------------------------------------------------------------- */
 .paths { display: grid; gap: 1.25rem; }
-@media (min-width: 800px) { .paths { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 900px) { .paths { grid-template-columns: 1fr 1fr; } }
 .path-card {
   border-radius: var(--radius); padding: clamp(1.75rem, 4vw, 2.75rem); display: flex; flex-direction: column;
   align-items: flex-start; box-shadow: var(--shadow); min-height: 22rem; position: relative; overflow: hidden;
@@ -167,7 +177,7 @@ ul { padding-left: 1.2em; }
 
 /* Cards ------------------------------------------------------------- */
 .grid { display: grid; gap: 1.5rem; }
-@media (min-width: 760px) { .grid--2 { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 900px) { .grid--2 { grid-template-columns: 1fr 1fr; } }
 .card {
   background: var(--white); border: 1px solid var(--line); border-radius: var(--radius);
   box-shadow: var(--shadow); display: flex; flex-direction: column; overflow: hidden;
@@ -212,13 +222,13 @@ ul { padding-left: 1.2em; }
   display: grid; gap: 1.5rem; align-items: center; background: var(--white); border: 1px solid var(--line);
   border-radius: var(--radius); padding: clamp(1.75rem, 4vw, 3rem); box-shadow: var(--shadow);
 }
-@media (min-width: 800px) { .callout { grid-template-columns: 1fr auto; } }
+@media (min-width: 900px) { .callout { grid-template-columns: 1fr auto; } }
 .callout h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); margin-bottom: 0.4rem; }
 .callout p { margin-bottom: 0; }
 
 /* Feature list ------------------------------------------------------ */
 .features { display: grid; gap: 2rem; list-style: none; padding: 0; margin: 2.5rem 0 0; counter-reset: f; }
-@media (min-width: 800px) { .features { grid-template-columns: repeat(3, 1fr); gap: 2.5rem; } }
+@media (min-width: 900px) { .features { grid-template-columns: repeat(3, 1fr); gap: 2.5rem; } }
 .features li { counter-increment: f; border-top: 2px solid var(--ink); padding-top: 1.25rem; }
 .features li::before { content: '0' counter(f); font: 500 1rem var(--serif); color: var(--terra); display: block; margin-bottom: 0.75rem; }
 .section--dark .features li { border-color: rgb(250 246 240 / 0.4); }
@@ -261,7 +271,6 @@ input:focus-visible, select:focus-visible, textarea:focus-visible { border-color
 .check { display: flex; gap: 0.85rem; align-items: flex-start; }
 .check input { width: 1.4rem; height: 1.4rem; margin-top: 0.2rem; flex: none; accent-color: var(--terra); }
 .two { display: grid; gap: 1.4rem; }
-@media (min-width: 700px) { .two { grid-template-columns: 1fr 1fr; } }
 .hp { position: absolute; left: -9999px; }
 .split { display: grid; gap: 3rem; }
 @media (min-width: 900px) { .split { grid-template-columns: 1.4fr 0.6fr; gap: 5rem; } }
@@ -280,13 +289,16 @@ input:focus-visible, select:focus-visible, textarea:focus-visible { border-color
 .site-footer a { color: var(--white); }
 .site-footer h2 { font: 700 0.85rem var(--sans); letter-spacing: 0.12em; text-transform: uppercase; color: #f0b39f; margin-bottom: 1rem; }
 .footer__grid { display: grid; gap: 2.5rem; }
-@media (min-width: 800px) { .footer__grid { grid-template-columns: 1.4fr 1fr 1fr; } }
+@media (min-width: 640px) { .footer__grid { grid-template-columns: 1fr 1fr; } .footer__grid > :first-child { grid-column: 1 / -1; } }
+@media (min-width: 900px) { .footer__grid { grid-template-columns: 1.4fr 1fr 1fr; } .footer__grid > :first-child { grid-column: auto; } }
 .footer__grid ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.5rem; }
 .footer__grid a { display: inline-block; padding-block: 0.15rem; }
 .site-footer .wordmark { color: var(--white); font-size: 1.5rem; }
 .footer__base { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid rgb(250 246 240 / 0.25); font-size: 0.95rem; color: #d8d2c8; }
 .footer__base p { max-width: none; margin-bottom: 0.4rem; }
 address { font-style: normal; }
+/* An email address is one long unbreakable word; let it wrap rather than widen the page. */
+a[href^='mailto:'] { overflow-wrap: anywhere; }
 
 /* Motion (only when the visitor has not asked for reduced motion) --- */
 @media (prefers-reduced-motion: no-preference) {

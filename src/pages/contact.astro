@@ -3,6 +3,8 @@ import Base from '../layouts/Base.astro';
 import data from '../../content/products.json';
 import { CONTACT_EMAIL, ADDRESS, RESPONSE_TIME, LINKEDIN_URL } from '../config.mjs';
 const emailIsReal = CONTACT_EMAIL.includes('@') && !CONTACT_EMAIL.includes('[');
+// <wbr> lets the address wrap after the @ when space is tight (it adds no visible character).
+const emailBreakable = CONTACT_EMAIL.replace('@', '@<wbr>');
 ---
 <Base title="Contact and enquiries" description="Request a quote or ask a question about SEND transition resources and written packages for schools, colleges and local authorities.">
   <section class="section">
@@ -14,7 +16,7 @@ const emailIsReal = CONTACT_EMAIL.includes('@') && !CONTACT_EMAIL.includes('[');
           <h1>Request a quote or ask a question.</h1>
           <p class="lede">Tell me a little about your setting and what you need. I'll reply by email.</p>
           <ul class="contact__list">
-            <li><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-10 6L2 7"/></svg><div><strong>Email</strong>{emailIsReal ? <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a> : <span>{CONTACT_EMAIL}</span>}</div></li>
+            <li><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-10 6L2 7"/></svg><div><strong>Email</strong>{emailIsReal ? <a href={`mailto:${CONTACT_EMAIL}`} set:html={emailBreakable} /> : <span>{CONTACT_EMAIL}</span>}</div></li>
             <li><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg><div><strong>Address</strong><address>{ADDRESS}</address></div></li>
             <li><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><div><strong>Usual reply time</strong><span>{RESPONSE_TIME}</span></div></li>
             <li><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg><div><strong>LinkedIn</strong><a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer">View profile<span class="visually-hidden"> (opens in a new tab)</span></a></div></li>
@@ -58,18 +60,24 @@ const emailIsReal = CONTACT_EMAIL.includes('@') && !CONTACT_EMAIL.includes('[');
 
 <style>
   .contact { position: relative; display: grid; background: var(--white); border: 1px solid var(--line); box-shadow: var(--shadow); }
-  @media (min-width: 1000px) { .contact { grid-template-columns: 1fr 1.1fr; } }
+  @media (min-width: 900px) { .contact { grid-template-columns: 1fr 1.1fr; } }
+  /* Grid children can't shrink below their content by default; without this a long
+     unbreakable word (the email address) pushes the whole page wider than the screen. */
+  .contact > * { min-width: 0; }
   .contact__info { padding: clamp(1.5rem, 4vw, 3rem); }
   .contact__info h1 { font-size: clamp(2rem, 5vw, 3.2rem); }
   .contact__form { padding: clamp(1.25rem, 3vw, 2.5rem); background: var(--sand-2); border-top: 1px solid var(--line); }
-  @media (min-width: 1000px) { .contact__form { border-top: 0; border-left: 1px solid var(--line); } }
+  @media (min-width: 900px) { .contact__form { border-top: 0; border-left: 1px solid var(--line); } }
   .contact__list { list-style: none; padding: 0; margin: 2rem 0 0; display: grid; gap: 0.75rem; }
   .contact__list li { display: flex; gap: 1rem; align-items: center; }
+  .contact__list li > div { min-width: 0; }
   .contact__list svg { flex: none; box-sizing: content-box; padding: 0.75rem; border-radius: 0.75rem; background: var(--sand-2); color: var(--plum); }
   .contact__list strong { display: block; }
   .plus { position: absolute; color: var(--ink); }
   .plus--tl { top: -12px; left: -12px; } .plus--tr { top: -12px; right: -12px; }
   .plus--bl { bottom: -12px; left: -12px; } .plus--br { bottom: -12px; right: -12px; }
-  .contact__form :global(.two) { grid-template-columns: 1fr; }
-  @media (min-width: 1300px) { .contact__form :global(.two) { grid-template-columns: 1fr 1fr; } }
+  /* Name/email and organisation/role sit side by side only when the form itself is wide
+     enough (about 480px), whatever the screen size — so it adapts to the layout it is in. */
+  .contact__form { container-type: inline-size; }
+  @container (min-width: 30rem) { .contact__form :global(.two) { grid-template-columns: 1fr 1fr; } }
 </style>

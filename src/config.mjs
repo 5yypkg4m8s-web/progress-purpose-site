@@ -42,9 +42,9 @@ export const DELIVERY_CONSENT =
   '[CHECKOUT CONSENT WORDING TO BE SUPPLIED AFTER SOLICITOR REVIEW: the buyer agrees to immediate delivery of digital content.]';
 
 export const NAV = [
+  { href: '/about/', label: 'About' },
   { href: '/resources/', label: 'Resources' },
   { href: '/packages/', label: 'Packages' },
-  { href: '/about/', label: 'About' },
   { href: '/contact/', label: 'Contact' },
 ];
 

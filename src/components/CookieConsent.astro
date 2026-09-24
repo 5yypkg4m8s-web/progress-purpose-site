@@ -130,7 +130,7 @@ const privacyHref = LEGAL_NAV.find((l) => l.href.includes('privacy'))?.href ?? '
     position: fixed; right: 1rem; bottom: 1rem; left: 1rem; z-index: 90;
     display: flex; justify-content: flex-end;
   }
-  @media (min-width: 560px) { .cookiebar { left: auto; width: 24rem; } }
+  @media (min-width: 640px) { .cookiebar { left: auto; width: 24rem; } }
   /* [hidden] and .cookiebar/.cookiebar__detail share specificity; without this,
      source order alone decides, which can leave a "hidden" panel showing. */
   .cookiebar[hidden], .cookiebar__detail[hidden] { display: none; }
