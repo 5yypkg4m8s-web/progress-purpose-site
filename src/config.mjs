@@ -15,7 +15,7 @@ export const SITE_URL = 'https://progresspurpose.co.uk'; // no trailing slash
 // address is deliberately kept out of the site and this repository.
 export const CONTACT_EMAIL = 'enquiries@progresspurpose.co.uk';
 export const ADDRESS = '[ADDRESS]';
-export const RESPONSE_TIME = '[RESPONSE TIME]';
+export const RESPONSE_TIME = '2 to 5 days';
 
 // The platform that takes payment and delivers downloads. Named on the Resources page,
 // the terms of sale and the privacy policy from this one value.
