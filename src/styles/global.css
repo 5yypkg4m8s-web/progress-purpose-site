@@ -218,6 +218,90 @@ ul { padding-left: 1.2em; }
   border: 1px solid rgb(255 255 255 / 0.4); padding: 0.3rem 0.8rem; border-radius: 999px; font-size: 0.85rem; font-weight: 700;
 }
 
+/* Product covers: one recognisable drawing per product ---------------
+   Sizes use the cover's own width (cqw) so the artwork scales with the card. */
+.cover--product { container-type: size; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 100%; align-items: center; gap: 4cqw; padding: 0 6cqw; }
+.cover__text { display: grid; gap: 0.6rem; justify-items: start; align-content: center; position: relative; z-index: 1; }
+.cover__kicker { font: 700 max(0.72rem, 2.3cqw) var(--sans); letter-spacing: 0.12em; text-transform: uppercase; color: var(--sand); }
+.cover__title { font: 600 max(1.5rem, 7.2cqw)/1.05 var(--serif); color: var(--white); letter-spacing: -0.01em; overflow-wrap: break-word; }
+.cover__tag--inline { margin: 0.35rem 0 0; }
+.cover__art { position: relative; height: 100%; }
+.paper { position: absolute; background: var(--sand); border-radius: 1.2cqw; box-shadow: 0 2cqw 4cqw -1.2cqw rgb(0 0 0 / 0.45); }
+.paper i { display: block; height: max(3px, 0.7cqw); border-radius: 99px; background: var(--line); }
+.paper b { display: block; height: max(5px, 1.4cqw); width: 55%; border-radius: 99px; background: var(--plum); }
+
+/* On the smallest phones the kicker line no longer fits beside the artwork; the title and tag carry the identity. */
+@container (max-width: 17.5rem) { .cover__kicker { display: none; } }
+
+/* Toolkit: a fanned stack, the front sheet a checklist */
+.paper--1, .paper--2, .paper--3 { width: 27cqw; height: 37cqw; left: 50%; top: 50%; margin: -18.5cqw 0 0 -13.5cqw; }
+.paper--1 { transform: translate(-7cqw, 0.5cqw) rotate(-11deg); background: var(--sand-2); }
+.paper--2 { transform: translate(-1.5cqw, 0) rotate(-4deg); background: var(--line); }
+.paper--3 { transform: translate(4cqw, 0.5cqw) rotate(4deg); padding: 2.6cqw; display: grid; align-content: start; gap: 1.8cqw; }
+.paper--3 p { margin: 0; display: flex; align-items: center; gap: 1.4cqw; }
+.paper--3 p i { flex: 1; }
+.paper--3 p u { flex: none; width: max(7px, 2.2cqw); height: max(7px, 2.2cqw); border: 2px solid var(--plum); border-radius: 0.5cqw; background: none; }
+.paper--3 p u.on { background: var(--terra); border-color: var(--terra); }
+
+/* Starter pack: three separate numbered templates */
+.cover--starter .cover__art { display: flex; align-items: center; justify-content: center; gap: 2cqw; }
+.paper--n { position: relative; width: 14.5cqw; height: 21cqw; padding: 1.6cqw; display: grid; align-content: start; gap: 1.2cqw; }
+.paper--n:nth-child(1) { transform: translateY(2cqw) rotate(-3deg); }
+.paper--n:nth-child(3) { transform: translateY(-2cqw) rotate(3deg); }
+.paper--n span { font: 600 max(1.1rem, 5.2cqw)/1 var(--serif); color: var(--plum); margin-bottom: 0.6cqw; }
+.paper--n i:nth-of-type(2) { width: 75%; }
+.paper--n i:nth-of-type(3) { width: 55%; }
+
+/* Guide: a single bound booklet with a spine */
+.paper--book { width: 29cqw; height: 40cqw; left: 50%; top: 50%; margin: -20cqw 0 0 -14.5cqw; transform: rotate(3deg); padding: 3cqw 2.6cqw 2.6cqw 5.6cqw; display: grid; align-content: start; gap: 1.6cqw; overflow: hidden; }
+.paper--book::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3cqw; background: var(--terra); }
+.paper--book em { display: block; width: max(0.8rem, 3.6cqw); height: max(0.8rem, 3.6cqw); border-radius: 50%; background: var(--terra); margin: 1.2cqw 0 1cqw; }
+.paper--book i:nth-of-type(2) { width: 85%; }
+.paper--book i:nth-of-type(4) { width: 60%; }
+
+/* Packages: one drawing per service, same system as the product covers */
+.paper--doc { width: 29cqw; height: 40cqw; left: 50%; top: 50%; margin: -20cqw 0 0 -14.5cqw; transform: rotate(-3deg); padding: 3cqw; display: grid; align-content: start; gap: 1.8cqw; }
+.paper--doc i:nth-of-type(2) { width: 85%; }
+.paper--doc i:nth-of-type(4) { width: 60%; }
+.paper--doc .badge { position: absolute; right: -3cqw; bottom: -3cqw; width: 11cqw; height: 11cqw; border-radius: 50%; background: var(--terra); box-shadow: 0 0 0 1cqw var(--sand); }
+.paper--doc .badge::after { content: ''; position: absolute; left: 3.3cqw; top: 2.2cqw; width: 2.6cqw; height: 5cqw; border: solid var(--white); border-width: 0 0.9cqw 0.9cqw 0; transform: rotate(40deg); }
+
+/* Briefing: a landscape slide with bullet points, another behind it */
+.paper--slide { width: 38cqw; height: 26cqw; left: 50%; top: 50%; margin: -13cqw 0 0 -19cqw; transform: translate(2cqw, 1cqw) rotate(2deg); padding: 3cqw; display: grid; align-content: start; gap: 2cqw; }
+.paper--slide p { margin: 0; display: flex; align-items: center; gap: 1.6cqw; }
+.paper--slide p i { flex: 1; }
+.paper--slide p u { flex: none; width: max(6px, 1.8cqw); height: max(6px, 1.8cqw); border-radius: 50%; background: var(--terra); }
+.paper--slide-back { transform: translate(-3cqw, -2cqw) rotate(-5deg); background: var(--line); }
+
+/* Coaching: two overlapping speech bubbles, a conversation */
+.bubble { position: absolute; border-radius: 3cqw; padding: 3cqw; display: grid; gap: 1.6cqw; align-content: center; box-shadow: 0 2cqw 4cqw -1.2cqw rgb(0 0 0 / 0.45); }
+.bubble i { display: block; height: max(3px, 0.8cqw); border-radius: 99px; }
+.bubble::after { content: ''; position: absolute; bottom: -2.4cqw; width: 4cqw; height: 4cqw; background: inherit; clip-path: polygon(0 0, 100% 0, 0 100%); }
+.bubble--a { width: 29cqw; height: 16cqw; left: 3%; top: 16%; background: var(--sand); }
+.bubble--a i { background: var(--line); }
+.bubble--a i:nth-child(2) { width: 65%; }
+.bubble--a::after { left: 4cqw; }
+.bubble--b { width: 31cqw; height: 19cqw; right: 2%; bottom: 14%; background: var(--terra-light); }
+.bubble--b i { background: var(--terra-dark); opacity: 0.5; }
+.bubble--b i:nth-child(2) { width: 80%; }
+.bubble--b i:nth-child(3) { width: 45%; }
+.bubble--b::after { right: 4cqw; clip-path: polygon(0 0, 100% 0, 100% 100%); }
+
+/* Bespoke: a page laid out from blocks */
+.paper--layout .bar, .paper--layout b { width: 60%; }
+.paper--layout div { display: grid; grid-template-columns: 1fr 1fr; gap: 1.6cqw; }
+.paper--layout div span { height: 9cqw; border-radius: 1cqw; background: var(--sand-2); border: 1px solid var(--line); }
+.paper--layout div span:first-child { background: var(--terra-light); border-color: transparent; }
+.paper--layout .wide { display: block; height: 5cqw; border-radius: 1cqw; background: var(--plum); }
+
+/* Advisory: a chart of rising bars */
+.paper--chart .bars { display: flex; align-items: flex-end; gap: 2cqw; height: 22cqw; margin-top: 2cqw; border-bottom: 2px solid var(--line); }
+.paper--chart .bars span { flex: 1; border-radius: 1cqw 1cqw 0 0; background: var(--line); }
+.paper--chart .bars span:nth-child(1) { height: 30%; }
+.paper--chart .bars span:nth-child(2) { height: 50%; }
+.paper--chart .bars span:nth-child(3) { height: 72%; background: var(--plum); }
+.paper--chart .bars span:nth-child(4) { height: 100%; background: var(--terra); }
+
 /* Sample / callout -------------------------------------------------- */
 .callout {
   display: grid; gap: 1.5rem; align-items: center; background: var(--white); border: 1px solid var(--line);

@@ -2,6 +2,9 @@
   "products": [
     {
       "id": "transition-planning-toolkit",
+      "design": "toolkit",
+      "coverKicker": "Post-16 transition",
+      "coverTitle": "Planning Toolkit",
       "cover": "terracotta",
       "name": "Post-16 Transition Planning Toolkit for Young People with SEND",
       "summary": "Editable templates for planning the move into adulthood with young people with SEND, licensed for one setting.",
@@ -19,6 +22,9 @@
     },
     {
       "id": "starter-template-pack",
+      "design": "starter",
+      "coverKicker": "Try before you buy",
+      "coverTitle": "Starter Pack",
       "cover": "plum",
       "name": "Starter template pack",
       "summary": "Three editable templates, a smaller way to try the approach before choosing the full toolkit.",
@@ -35,6 +41,9 @@
     },
     {
       "id": "parent-carer-guide",
+      "design": "guide",
+      "coverKicker": "For parents and carers",
+      "coverTitle": "Free Guide",
       "cover": "charcoal",
       "name": "Parent and Carer Guide to Post-16 Transition",
       "summary": "A free, plain-English introduction to post-16 transition planning, sent by email.",
@@ -55,6 +64,10 @@
   "services": [
     {
       "id": "transition-provision-review",
+      "design": "review",
+      "coverKicker": "Written report",
+      "coverTitle": "Provision Review",
+      "coverTag": "Written service",
       "cover": "charcoal",
       "name": "Written Transition Provision Review",
       "summary": "A desk-based review of your post-16 transition provision, delivered as a written report for a fixed fee.",
@@ -69,6 +82,10 @@
     },
     {
       "id": "staff-briefing-pack",
+      "design": "briefing",
+      "coverKicker": "Ready to share",
+      "coverTitle": "Staff Briefing",
+      "coverTag": "Written service",
       "cover": "terracotta",
       "name": "Staff Briefing Pack",
       "summary": "Ready-to-use slides and handouts so your own team can brief colleagues on transition.",
@@ -83,6 +100,10 @@
     },
     {
       "id": "one-to-one-coaching",
+      "design": "coaching",
+      "coverKicker": "For young people",
+      "coverTitle": "1:1 Coaching",
+      "coverTag": "In person or online",
       "cover": "plum",
       "name": "1:1 Coaching",
       "summary": "Private coaching for one young person at a time, working through transition planning. Can be booked by their school, or by a parent or carer.",
@@ -98,6 +119,10 @@
     },
     {
       "id": "bespoke-resource-design",
+      "design": "bespoke",
+      "coverKicker": "Made for your setting",
+      "coverTitle": "Bespoke Resources",
+      "coverTag": "Written service",
       "cover": "plum",
       "name": "Bespoke Resource Design",
       "summary": "Resources designed to your brief and delivered as editable files.",
@@ -112,6 +137,10 @@
     },
     {
       "id": "local-authority-advisory",
+      "design": "advisory",
+      "coverKicker": "For local authorities",
+      "coverTitle": "Advisory",
+      "coverTag": "Day rate",
       "cover": "charcoal",
       "name": "Local authority advisory",
       "summary": "Written, advisory support for local authority teams. Enquiry only.",

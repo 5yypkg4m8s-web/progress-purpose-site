@@ -4,7 +4,7 @@ const { item, kind } = Astro.props; // kind: 'product' | 'service'
 const isProduct = kind === 'product';
 ---
 <article class="card" data-reveal>
-  <Cover variant={item.cover} label={isProduct ? item.format : 'Written service'} />
+  <Cover variant={item.cover} label={isProduct ? item.format : (item.coverTag || 'Written service')} design={item.design} kicker={item.coverKicker} title={item.coverTitle} />
   <div class="card__body">
     <p class="card__kind">{isProduct ? (item.free ? 'Free download' : 'Digital download') : 'Enquiry-led'}</p>
     <h3>{item.name}</h3>

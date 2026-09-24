@@ -1,8 +1,58 @@
 ---
-const { variant = 'terracotta', label = '' } = Astro.props;
+// Product covers are drawn in CSS from the brand colours, so there are no image files to
+// maintain. `design` picks the artwork so each product is recognisable at a glance:
+//   toolkit: fanned stack of sheets  |  starter: three numbered sheets  |  guide: one booklet
+// and, for the packages: review, briefing, coaching, bespoke, advisory.
+// With no `design` (the written services) the original single-sheet drawing is used.
+const { variant = 'terracotta', label = '', design = '', kicker = '', title = '' } = Astro.props;
 ---
-<div class={`cover cover--${variant}`} aria-hidden="true">
-  <div class="cover__sheet cover__sheet--back"><i></i><i></i><i></i><i></i></div>
-  <div class="cover__sheet"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-  {label && <span class="cover__tag">{label}</span>}
-</div>
+{design ? (
+  <div class={`cover cover--${variant} cover--product cover--${design}`} aria-hidden="true">
+    <div class="cover__text">
+      {kicker && <span class="cover__kicker">{kicker}</span>}
+      {title && <span class="cover__title">{title}</span>}
+      {label && <span class="cover__tag cover__tag--inline">{label}</span>}
+    </div>
+    <div class="cover__art">
+      {design === 'toolkit' && (<>
+        <div class="paper paper--1"></div>
+        <div class="paper paper--2"></div>
+        <div class="paper paper--3">
+          <b></b>
+          <p><u></u><i></i></p><p><u></u><i></i></p><p><u></u><i></i></p><p><u class="on"></u><i></i></p>
+        </div>
+      </>)}
+      {design === 'starter' && (<>
+        <div class="paper paper--n"><span>1</span><i></i><i></i><i></i></div>
+        <div class="paper paper--n"><span>2</span><i></i><i></i><i></i></div>
+        <div class="paper paper--n"><span>3</span><i></i><i></i><i></i></div>
+      </>)}
+      {design === 'review' && (
+        <div class="paper paper--doc"><b></b><i></i><i></i><i></i><i></i><span class="badge"></span></div>
+      )}
+      {design === 'briefing' && (<>
+        <div class="paper paper--slide paper--slide-back"></div>
+        <div class="paper paper--slide"><b></b><p><u></u><i></i></p><p><u></u><i></i></p><p><u></u><i></i></p></div>
+      </>)}
+      {design === 'coaching' && (<>
+        <div class="bubble bubble--a"><i></i><i></i></div>
+        <div class="bubble bubble--b"><i></i><i></i><i></i></div>
+      </>)}
+      {design === 'bespoke' && (
+        <div class="paper paper--doc paper--layout"><b></b><div><span></span><span></span></div><span class="wide"></span><i></i><i></i></div>
+      )}
+      {design === 'advisory' && (
+        <div class="paper paper--doc paper--chart"><b></b><div class="bars"><span></span><span></span><span></span><span></span></div></div>
+      )}
+      {design === 'guide' && (
+        <div class="paper paper--book"><b></b><em></em><i></i><i></i><i></i><i></i></div>
+      )}
+    </div>
+  </div>
+) : (
+  <div class={`cover cover--${variant}`} aria-hidden="true">
+    <div class="cover__sheet cover__sheet--back"><i></i><i></i><i></i><i></i></div>
+    <div class="cover__sheet"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    {label && <span class="cover__tag">{label}</span>}
+  </div>
+)}
