@@ -2,6 +2,9 @@
 import Cover from './Cover.astro';
 const { item, kind } = Astro.props; // kind: 'product' | 'service'
 const isProduct = kind === 'product';
+// Anything still in [square brackets] is an unfinished placeholder; keep it off the public page.
+const includes = item.includes.filter((i) => !i.startsWith('['));
+const showLicence = isProduct && item.licence && !item.licence.startsWith('[');
 ---
 <article class="card" data-reveal>
   <Cover variant={item.cover} label={isProduct ? item.format : (item.coverTag || 'Written service')} design={item.design} kicker={item.coverKicker} title={item.coverTitle} />
@@ -9,10 +12,10 @@ const isProduct = kind === 'product';
     <p class="card__kind">{isProduct ? (item.free ? 'Free download' : 'Digital download') : 'Enquiry-led'}</p>
     <h3>{item.name}</h3>
     <p>{item.summary}</p>
-    <ul>{item.includes.map((i) => <li>{i}</li>)}</ul>
+    <ul>{includes.map((i) => <li>{i}</li>)}</ul>
     <dl class="meta">
       <div><dt>Who it is for</dt><dd>{item.forWho}</dd></div>
-      {isProduct && <div><dt>Licence</dt><dd>{item.licence}</dd></div>}
+      {showLicence && <div><dt>Licence</dt><dd>{item.licence}</dd></div>}
     </dl>
     <div class="card__foot">
       {isProduct ? (
@@ -22,9 +25,7 @@ const isProduct = kind === 'product';
             item.free
               ? <a class="btn btn--primary" href={item.buyUrl}>Get the guide<span class="visually-hidden">: {item.name}</span></a>
               : <a class="btn btn--primary" href={item.buyUrl} data-buy>Buy now<span class="visually-hidden">: {item.name}</span></a>
-          ) : (
-            <button class="btn btn--plain" type="button" disabled>{item.free ? 'Sign-up form to be added' : 'Buy link to be added'}</button>
-          )}
+          ) : null /* no button until the Payhip link exists */}
         </>
       ) : (
         <>

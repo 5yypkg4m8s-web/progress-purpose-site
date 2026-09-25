@@ -14,7 +14,7 @@ export const SITE_URL = 'https://progresspurpose.co.uk'; // no trailing slash
 // The public address for quote requests and mailing-list questions. Any personal
 // address is deliberately kept out of the site and this repository.
 export const CONTACT_EMAIL = 'enquiries@progresspurpose.co.uk';
-export const ADDRESS = '[ADDRESS]';
+export const ADDRESS = '173473, PO Box 6945, London, W1A 6US';
 export const RESPONSE_TIME = '2 to 5 days';
 
 // The platform that takes payment and delivers downloads. Named on the Resources page,
@@ -44,7 +44,7 @@ export const DELIVERY_CONSENT =
 export const NAV = [
   { href: '/about/', label: 'About' },
   { href: '/resources/', label: 'Resources' },
-  { href: '/packages/', label: 'Packages' },
+  { href: '/packages/', label: 'Services' },
   { href: '/contact/', label: 'Contact' },
 ];
 

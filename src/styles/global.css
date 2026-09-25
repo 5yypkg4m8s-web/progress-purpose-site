@@ -314,6 +314,9 @@ ul { padding-left: 1.2em; }
 /* Feature list ------------------------------------------------------ */
 .features { display: grid; gap: 2rem; list-style: none; padding: 0; margin: 2.5rem 0 0; counter-reset: f; }
 @media (min-width: 900px) { .features { grid-template-columns: repeat(3, 1fr); gap: 2.5rem; } }
+/* Four-up variant (Who we work with): two across, then four across from 900px */
+@media (min-width: 640px) { .features--4 { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 900px) { .features--4 { grid-template-columns: repeat(4, 1fr); gap: 2rem; } }
 .features li { counter-increment: f; border-top: 2px solid var(--ink); padding-top: 1.25rem; }
 .features li::before { content: '0' counter(f); font: 500 1rem var(--serif); color: var(--terra); display: block; margin-bottom: 0.75rem; }
 .section--dark .features li { border-color: rgb(250 246 240 / 0.4); }

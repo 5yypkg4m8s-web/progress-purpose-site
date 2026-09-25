@@ -1,0 +1,12 @@
+---
+// A call to action that leads to the enquiry form. Used across the site so the
+// "Request a quote" route is always one click away, with wording that fits the page.
+const { heading, text, cta = 'Request a quote', href = '/contact/' } = Astro.props;
+---
+<div class="callout enquire" data-reveal>
+  <div>
+    <h2>{heading}</h2>
+    <p>{text}</p>
+  </div>
+  <a class="btn btn--primary" href={href}>{cta}</a>
+</div>

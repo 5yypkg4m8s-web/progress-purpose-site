@@ -1,17 +1,24 @@
 ---
 import Base from '../layouts/Base.astro';
 import ProductCard from '../components/ProductCard.astro';
+import Enquire from '../components/Enquire.astro';
 import data from '../../content/products.json';
 
-// An odd number of cards leaves the last one alone on its row in the two-column grid,
-// so an odd count gets a "not sure?" card in the empty slot. An even count needs none.
-const needsHelpCard = data.services.length % 2 === 1;
+// The services are grouped into three levels of support, plus coaching on its own
+// because it is a different buyer and a different way of working.
+const byId = (ids) => ids.map((id) => data.services.find((s) => s.id === id)).filter(Boolean);
+const tiers = [
+  { n: '01', name: 'Review', line: 'Understand where you are and what needs to change.', items: byId(['transition-provision-review']) },
+  { n: '02', name: 'Develop', line: 'Turn your priorities into practical tools and resources.', items: byId(['bespoke-resource-design', 'staff-briefing-pack']) },
+  { n: '03', name: 'Advise', line: 'Get specialist input when you need it.', items: byId(['local-authority-advisory']) },
+  { n: '', name: 'For individuals', line: 'One-to-one coaching for a young person, a separate service from the organisational support above.', items: byId(['one-to-one-coaching']), apart: true },
+];
 ---
-<Base title="Packages for schools and local authorities" description="Written transition provision reviews, staff briefing packs, bespoke resources and local authority advisory. Quote on request.">
+<Base title="Consultancy and tailored support for schools and local authorities" description="Written transition provision reviews, bespoke resources, briefing packs and advisory support for schools, colleges and local authorities. Quote on request.">
   <section class="page-head">
     <div class="wrap">
-      <p class="eyebrow">Packages</p>
-      <h1>Packages for schools, colleges and local authorities.</h1>
+      <p class="eyebrow">Consultancy &amp; tailored support</p>
+      <h1>Support for schools, colleges and local authorities.</h1>
       <p class="lede">Written, advisory and product-based support, scoped to your needs. Indicative fees are shown below; the final figure is confirmed with you in writing before any work begins.</p>
     </div>
   </section>
@@ -25,20 +32,23 @@ const needsHelpCard = data.services.length % 2 === 1;
         <li data-reveal><h3>Move Forward</h3><p>You’ll receive a clear recommendation and next steps tailored to you.</p></li>
       </ul>
 
-      <div class="grid grid--2" style="margin-top:4rem">
-        {data.services.map((item) => <ProductCard item={item} kind="service" />)}
-        {needsHelpCard && (
-          <article class="card card--help" data-reveal>
-            <div class="card__body">
-              <p class="card__kind">Not sure?</p>
-              <h3>Not sure which package fits?</h3>
-              <p>Tell us about your setting and what you're trying to achieve, and we'll suggest a sensible starting point.</p>
-              <div class="card__foot">
-                <a class="btn btn--light" href="/contact/?package=other">Ask a question</a>
-              </div>
+      <div class="tiers">
+        {tiers.map((t) => (
+          <section class={`tier${t.apart ? ' tier--apart' : ''}`} aria-labelledby={`tier-${t.name.toLowerCase().replace(/\s+/g, '-')}`}>
+            <div class="tier__intro" data-reveal>
+              {t.n && <span class="tier__num" aria-hidden="true">{t.n}</span>}
+              <h2 id={`tier-${t.name.toLowerCase().replace(/\s+/g, '-')}`}>{t.name}</h2>
+              <p>{t.line}</p>
             </div>
-          </article>
-        )}
+            <div class="tier__cards">
+              {t.items.map((item) => <ProductCard item={item} kind="service" />)}
+            </div>
+          </section>
+        ))}
+      </div>
+
+      <div style="margin-top:3rem">
+        <Enquire heading="Not sure which fits?" text="Tell us about your setting and what you're trying to achieve, and we'll suggest a sensible starting point." />
       </div>
       <div class="notice" style="margin-top:2.5rem">
         <p>All services are delivered in writing or as ready-made materials. Live group training, workshops and events are not offered.</p>
@@ -51,10 +61,17 @@ const needsHelpCard = data.services.length % 2 === 1;
 </Base>
 
 <style>
-  /* Top-aligned rather than stretched, so it doesn't become a tall empty dark block
-     beside the (much taller) card next to it. */
-  .card--help { background: var(--ink); color: var(--sand); border-color: var(--ink); align-self: start; }
-  .card--help h3 { color: var(--white); }
-  .card--help .card__kind { color: var(--sand); opacity: 0.8; }
-  .card--help .card__foot { margin-top: 1.25rem; }
+  .tiers { margin-top: 4rem; display: grid; gap: 3.5rem; }
+  .tier { display: grid; gap: 1.25rem; }
+  .tier__intro { position: relative; }
+  .tier__num { font: 500 3.5rem/1 var(--serif); color: var(--terra); display: block; margin-bottom: 0.25rem; }
+  .tier__intro h2 { font-size: clamp(1.7rem, 3.4vw, 2.3rem); margin-bottom: 0.4rem; }
+  .tier__intro p { max-width: 32ch; color: var(--ink-soft); }
+  .tier__cards { display: grid; gap: 1.5rem; }
+  .tier--apart { border-top: 1px solid var(--line); padding-top: 3rem; }
+  @media (min-width: 900px) {
+    .tier { grid-template-columns: 0.7fr 1.6fr; gap: 3rem; }
+    .tier__intro { align-self: start; position: sticky; top: 6rem; }
+    .tier__cards { grid-template-columns: 1fr; }
+  }
 </style>

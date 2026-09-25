@@ -1,18 +1,19 @@
 ---
 import Base from '../layouts/Base.astro';
+import Enquire from '../components/Enquire.astro';
 import { AUTHOR_NAME, LINKEDIN_URL, FREE_SAMPLE } from '../config.mjs';
 const initials = AUTHOR_NAME.split(' ').map((w) => w[0]).join('').slice(0, 2);
 ---
-<Base home description="Editable SEND transition resources and written packages for schools, colleges and local authorities. Post-16, preparing for adulthood, autism and EHCP.">
+<Base home description="Practical SEND transition resources, consultancy and tailored support for schools, colleges and local authorities. Post-16, preparing for adulthood, autism and EHCP.">
   <section class="hero">
     <div class="wrap hero__grid">
       <div>
         <p class="eyebrow">Post-16 SEND &middot; Preparing for adulthood</p>
-        <h1>Clear, practical <em>transition</em> resources for young people with SEND.</h1>
-        <p class="lede">Editable templates and written packages for schools, colleges and local authorities. Plain English, ready to use and easy to adapt.</p>
+        <h1>Practical support for better SEND <em>transitions</em>.</h1>
+        <p class="lede">Resources, consultancy and tailored support for schools, colleges and local authorities working to improve preparation for adulthood.</p>
         <div class="actions">
-          <a class="btn btn--primary" href="/resources/">Shop resources</a>
-          <a class="btn btn--ghost" href="/packages/">Packages for schools and local authorities</a>
+          <a class="btn btn--primary" href="/packages/">Explore our services</a>
+          <a class="btn btn--ghost" href="/resources/">Shop resources</a>
         </div>
       </div>
       <svg class="hero__art" viewBox="0 0 400 400" role="img" aria-label="Decorative illustration of steps rising from left to right">
@@ -32,17 +33,33 @@ const initials = AUTHOR_NAME.split(' ').map((w) => w[0]).join('').slice(0, 2);
         <div class="path-card path-card--light" data-reveal>
           <span class="path-card__num" aria-hidden="true">01</span>
           <p class="eyebrow">For practitioners</p>
-          <h2>Shop resources</h2>
-          <p>Editable Word templates and PDFs you can download and use with your own young people, licensed for your setting.</p>
+          <h2>Ready-to-use resources</h2>
+          <p>Editable templates and practical toolkits that save your team time and give you a clear starting point.</p>
           <a class="btn btn--primary" href="/resources/">Browse resources</a>
         </div>
         <div class="path-card path-card--dark" data-reveal>
           <span class="path-card__num" aria-hidden="true">02</span>
-          <p class="eyebrow" style="color:var(--terra-light)">For leaders and commissioners</p>
-          <h2>Packages for schools, colleges and local authorities</h2>
-          <p>Written reviews, briefing packs and bespoke resources, scoped and quoted to your needs.</p>
-          <a class="btn btn--light" href="/packages/">See packages</a>
+          <p class="eyebrow" style="color:var(--terra-light)">For organisations</p>
+          <h2>Consultancy &amp; tailored support</h2>
+          <p>Practical reviews, advisory support and bespoke resources designed around your organisation's needs.</p>
+          <a class="btn btn--light" href="/packages/">Explore services</a>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="wrap">
+      <p class="eyebrow">Who we work with</p>
+      <h2>Support for the people responsible for transition.</h2>
+      <ul class="features features--4">
+        <li data-reveal><h3>Schools</h3><p>Support with post-16 transition planning, provision reviews and practical resources.</p></li>
+        <li data-reveal><h3>Colleges</h3><p>Tools and written support to strengthen preparation for adulthood.</p></li>
+        <li data-reveal><h3>Local authorities</h3><p>Advisory support, written reviews and bespoke resources.</p></li>
+        <li data-reveal><h3>SEND &amp; education organisations</h3><p>Practical resources and specialist project support.</p></li>
+      </ul>
+      <div style="margin-top:2.5rem">
+        <Enquire heading="Have a specific project in mind? Let's talk." text="Tell us what you're working on and we'll recommend an appropriate starting point." />
       </div>
     </div>
   </section>
@@ -78,7 +95,7 @@ const initials = AUTHOR_NAME.split(' ').map((w) => w[0]).join('').slice(0, 2);
     <div class="wrap">
       <div class="author" data-reveal>
         <span class="monogram" aria-hidden="true">{initials}</span>
-        <p>Written by <strong>{AUTHOR_NAME}</strong>, who holds an MSc in Autism Studies and has more than five years' frontline experience supporting young people with SEND in post-16 settings. <a href="/about/">More about me</a> &middot; <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer">LinkedIn<span class="visually-hidden"> (opens in a new tab)</span></a></p>
+        <p>Written by <strong>{AUTHOR_NAME}</strong>, who holds an MSc in Autism Studies and has more than five years' frontline experience supporting young people with SEND in post-16 settings. <a href="/about/">More about us</a> &middot; <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer">LinkedIn<span class="visually-hidden"> (opens in a new tab)</span></a></p>
       </div>
     </div>
   </section>
