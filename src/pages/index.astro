@@ -30,19 +30,19 @@ const initials = AUTHOR_NAME.split(' ').map((w) => w[0]).join('').slice(0, 2);
   <section class="section" style="padding-top:0">
     <div class="wrap">
       <div class="paths">
-        <div class="path-card path-card--light" data-reveal>
-          <span class="path-card__num" aria-hidden="true">01</span>
-          <p class="eyebrow">For practitioners</p>
-          <h2>Ready-to-use resources</h2>
-          <p>Editable templates and practical toolkits that save your team time and give you a clear starting point.</p>
-          <a class="btn btn--primary" href="/resources/">Browse resources</a>
-        </div>
         <div class="path-card path-card--dark" data-reveal>
-          <span class="path-card__num" aria-hidden="true">02</span>
+          <span class="path-card__num" aria-hidden="true">01</span>
           <p class="eyebrow" style="color:var(--terra-light)">For organisations</p>
           <h2>Consultancy &amp; tailored support</h2>
           <p>Practical reviews, advisory support and bespoke resources designed around your organisation's needs.</p>
           <a class="btn btn--light" href="/packages/">Explore services</a>
+        </div>
+        <div class="path-card path-card--light" data-reveal>
+          <span class="path-card__num" aria-hidden="true">02</span>
+          <p class="eyebrow">For practitioners</p>
+          <h2>Ready-to-use resources</h2>
+          <p>Editable templates and practical toolkits that save your team time and give you a clear starting point.</p>
+          <a class="btn btn--primary" href="/resources/">Browse resources</a>
         </div>
       </div>
     </div>
@@ -95,7 +95,7 @@ const initials = AUTHOR_NAME.split(' ').map((w) => w[0]).join('').slice(0, 2);
     <div class="wrap">
       <div class="author" data-reveal>
         <span class="monogram" aria-hidden="true">{initials}</span>
-        <p>Written by <strong>{AUTHOR_NAME}</strong>, who holds an MSc in Autism Studies and has more than five years' frontline experience supporting young people with SEND in post-16 settings. <a href="/about/">More about us</a> &middot; <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer">LinkedIn<span class="visually-hidden"> (opens in a new tab)</span></a></p>
+        <p>Progress &amp; Purpose is founded by <strong>{AUTHOR_NAME}</strong>, who brings an MSc in Autism Studies and over five years’ frontline experience supporting young people with SEND in post-16 settings. This experience informs our practical, evidence-informed approach to SEND transition and professional support. <a href="/about/">About Progress &amp; Purpose</a> &middot; <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer">LinkedIn<span class="visually-hidden"> (opens in a new tab)</span></a></p>
       </div>
     </div>
   </section>

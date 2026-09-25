@@ -1,10 +1,9 @@
 ---
 import Base from '../layouts/Base.astro';
-import PaymentCard from '../components/PaymentCard.astro';
 import ProductCard from '../components/ProductCard.astro';
 import Enquire from '../components/Enquire.astro';
 import data from '../../content/products.json';
-import { DELIVERY_CONSENT } from '../config.mjs';
+import { DELIVERY_CONSENT, PAYMENT_PLATFORM } from '../config.mjs';
 const schema = {
   '@context': 'https://schema.org', '@type': 'ItemList',
   itemListElement: data.products.map((p, i) => ({
@@ -28,7 +27,7 @@ const showConsent = !DELIVERY_CONSENT.startsWith('[') || data.products.some((p) 
   </section>
   <section class="section" style="padding-top:1rem">
     <div class="wrap">
-      <PaymentCard />
+      <div class="notice" style="margin-bottom:2rem"><p>Resources are bought through {PAYMENT_PLATFORM}'s secure checkout. Card details are entered on {PAYMENT_PLATFORM}, never on this site.</p></div>
       {showConsent && <div class="consent notice">
         <label>
           <input type="checkbox" id="delivery-consent" />
@@ -42,7 +41,7 @@ const showConsent = !DELIVERY_CONSENT.startsWith('[') || data.products.some((p) 
       <div style="margin-top:3rem">
         <Enquire heading="Need something more tailored?" text="We work with schools, colleges and local authorities to review provision, develop bespoke resources and provide written advisory support." />
       </div>
-      <p class="muted" style="margin-top:2rem">Payment is taken securely by a third-party payment provider. This site never sees or stores card details. See <a href="/legal/refunds-and-digital-delivery/">refunds and digital delivery</a> and <a href="/legal/licence-terms/">licence terms</a>.</p>
+      <p class="muted" style="margin-top:2rem">See <a href="/legal/refunds-and-digital-delivery/">refunds and digital delivery</a> and <a href="/legal/licence-terms/">licence terms</a>.</p>
     </div>
   </section>
 </Base>
