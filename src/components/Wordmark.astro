@@ -1,12 +1,19 @@
 ---
-// Splits "X & Y" so the ampersand can be styled on its own. Falls back to plain
-// text if the trading name doesn't contain " & " (e.g. a future name change).
+// The brand logo, as a link to the home page. Uses the real logo artwork (public/images):
+//   header (tone "dark"): the horizontal lockup, and just the P&P monogram on phones
+//   footer (tone "light"): the stacked logo in its cream version, for the dark background
 import { SITE_NAME } from '../config.mjs';
-const SEP = ' & ';
-const cut = SITE_NAME.indexOf(SEP);
-const before = cut === -1 ? SITE_NAME : SITE_NAME.slice(0, cut);
-const after = cut === -1 ? '' : SITE_NAME.slice(cut + SEP.length);
+const { tone = 'dark' } = Astro.props;
 ---
-<a class="wordmark" href="/">
-  <span class="wordmark__text">{before}{cut !== -1 && <> <span class="wordmark__amp">&amp;</span> {after}</>}</span>
-</a>
+{tone === 'light' ? (
+  <a class="brand brand--footer" href="/" aria-label={`${SITE_NAME}, home`}>
+    <img src="/images/logo-stacked-light.png" alt="" width="360" height="190" />
+  </a>
+) : (
+  <a class="brand" href="/" aria-label={`${SITE_NAME}, home`}>
+    <picture>
+      <source media="(max-width: 639px)" srcset="/images/logo-mark.png" width="320" height="225" />
+      <img src="/images/logo-horizontal.png" alt="" width="706" height="132" />
+    </picture>
+  </a>
+)}

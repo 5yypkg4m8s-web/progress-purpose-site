@@ -1,0 +1,60 @@
+---
+import Base from '../layouts/Base.astro';
+import Enquire from '../components/Enquire.astro';
+import faq from '../../content/faq.json';
+import { RESPONSE_TIME } from '../config.mjs';
+
+// Answers can use {RESPONSE_TIME}, so the reply time is only ever set in config.mjs.
+const items = faq.map((f) => ({ ...f, answer: f.answer.replace('{RESPONSE_TIME}', RESPONSE_TIME) }));
+const schema = {
+  '@context': 'https://schema.org', '@type': 'FAQPage',
+  mainEntity: items.map((f) => ({ '@type': 'Question', name: f.question, acceptedAnswer: { '@type': 'Answer', text: f.answer } })),
+};
+---
+<Base title="Frequently asked questions" description="Answers about SEND transition resources, services, quotes, licences and 1:1 coaching from Progress & Purpose." schema={schema}>
+  <section class="page-head">
+    <div class="wrap">
+      <p class="eyebrow">FAQs</p>
+      <h1>Frequently asked questions.</h1>
+      <p class="lede">Quick answers about our resources, services and how we work.</p>
+    </div>
+  </section>
+  <section class="section" style="padding-top:1rem">
+    <div class="wrap faq-wrap">
+      <div class="faq" id="faq-list">
+        {items.map((f) => (
+          <details class="faq__item" id={f.id}>
+            <summary>{f.question}</summary>
+            <div class="faq__answer">
+              <p>{f.answer}</p>
+              {f.link && <p><a href={f.link.href}>{f.link.label}</a></p>}
+            </div>
+          </details>
+        ))}
+      </div>
+      <div style="margin-top:3rem">
+        <Enquire heading="Can't find your answer?" text="Tell us what you'd like to know and we'll reply by email." cta="Ask a question" />
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .faq-wrap { max-width: 46rem; }
+  .faq { display: grid; gap: 0.75rem; }
+  .faq__item { background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); }
+  .faq__item summary {
+    list-style: none; cursor: pointer; padding: 1.1rem 1.25rem; padding-right: 3.25rem; position: relative;
+    font: 600 1.1rem/1.4 var(--serif); color: var(--plum);
+  }
+  .faq__item summary::-webkit-details-marker { display: none; }
+  .faq__item summary::after {
+    content: ''; position: absolute; right: 1.35rem; top: 50%; width: 0.6rem; height: 0.6rem; margin-top: -0.45rem;
+    border: solid var(--terra); border-width: 0 2px 2px 0; transform: rotate(45deg); transition: transform 0.2s ease;
+  }
+  .faq__item[open] summary::after { transform: rotate(-135deg); margin-top: -0.15rem; }
+  .faq__item[open] summary { padding-bottom: 0.5rem; }
+  .faq__answer { padding: 0 1.25rem 1.25rem; }
+  .faq__answer p { margin: 0 0 0.6rem; }
+  .faq__answer p:last-child { margin-bottom: 0; }
+</style>

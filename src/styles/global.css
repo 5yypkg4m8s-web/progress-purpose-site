@@ -115,17 +115,16 @@ ul { padding-left: 1.2em; }
   border-bottom: 1px solid var(--line);
 }
 .site-header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 4.5rem; flex-wrap: wrap; }
-.wordmark {
-  font: 600 1.45rem/1 var(--serif); color: var(--ink); text-decoration: none; letter-spacing: -0.01em;
-  display: inline-flex; align-items: center; gap: 0.5rem; padding-block: 0.5rem;
-}
-.wordmark::before {
-  content: ''; width: 0.7rem; height: 0.7rem; border-radius: 50%; background: var(--terra);
-  }
-.wordmark__amp {
-  font-style: italic; color: var(--terra); display: inline-block;
-}
-.site-footer .wordmark__amp { color: var(--terra-light); } /* lighter terracotta tint, readable on the dark footer */
+.brand { display: inline-flex; align-items: center; padding-block: 0.5rem; text-decoration: none; }
+.brand img { display: block; width: auto; height: 2.75rem; }
+/* Phones show just the monogram (the full name is in the logo's accessible name and the footer). */
+@media (max-width: 639px) { .brand img { height: 2.6rem; } }
+/* Just above the 900px desktop step there is little spare room, so the lockup is a touch smaller. */
+@media (min-width: 900px) and (max-width: 1099px) { .brand img { height: 2.45rem; } .nav a:not(.btn) { padding: 0 0.55rem; } }
+/* A small supporting monogram above the Resources heading; the heading stays dominant. */
+.page-mark { display: block; height: 2.75rem; width: auto; margin-bottom: 1.25rem; }
+/* On phones the header already shows the monogram, so it is not repeated. */
+@media (max-width: 639px) { .page-mark { display: none; } }
 .nav ul { display: flex; flex-wrap: wrap; gap: 0.25rem 0.5rem; list-style: none; margin: 0; padding: 0; align-items: center; }
 .nav a:not(.btn) {
   display: inline-flex; align-items: center; min-height: 2.75rem; padding: 0 0.85rem;
@@ -134,7 +133,7 @@ ul { padding-left: 1.2em; }
 .nav a:not(.btn):hover { background: var(--sand-2); }
 .nav a[aria-current='page'] { color: var(--plum); box-shadow: inset 0 -3px 0 var(--terra); border-radius: 0; }
 .nav .btn { min-height: 2.75rem; padding-inline: 1.25rem; }
-/* Just enough headroom that wordmark + full nav fit on one row from the 900px step (they need ~808px; 820px is available). */
+/* Just enough headroom that wordmark + full nav fit on one row from the 900px step (the logo and nav together need ~800px; 820px is available). */
 @media (min-width: 900px) { .nav a:not(.btn) { padding: 0 0.7rem; } }
 .menu-btn {
   display: none; align-items: center; gap: 0.5rem; min-height: 2.75rem; padding: 0 1rem;
@@ -381,17 +380,23 @@ input[aria-invalid='true'], select[aria-invalid='true'], textarea[aria-invalid='
 .link-list a { font-weight: 700; font-size: 1.15rem; }
 
 /* Footer ------------------------------------------------------------ */
-.site-footer { background: var(--ink); color: var(--sand); padding-block: 4rem 2rem; margin-top: 0; }
+/* Footer: the brand comes first, like a closing signature; navigation and small print sit quietly below. */
+.site-footer { background: var(--plum); color: var(--sand); padding-block: 0 2rem; margin-top: 0; text-align: center; }
 .site-footer a { color: var(--white); }
-.site-footer h2 { font: 700 0.85rem var(--sans); letter-spacing: 0.12em; text-transform: uppercase; color: var(--terra-light); margin-bottom: 1rem; }
-.footer__grid { display: grid; gap: 2.5rem; }
-@media (min-width: 640px) { .footer__grid { grid-template-columns: 1fr 1fr; } .footer__grid > :first-child { grid-column: 1 / -1; } }
-@media (min-width: 900px) { .footer__grid { grid-template-columns: 1.4fr 1fr 1fr; } .footer__grid > :first-child { grid-column: auto; } }
-.footer__grid ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.5rem; }
-.footer__grid a { display: inline-block; padding-block: 0.15rem; }
-.site-footer .wordmark { color: var(--white); font-size: 1.5rem; }
-.footer__base { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid rgb(250 246 240 / 0.25); font-size: 0.95rem; color: var(--sand-dim); }
-.footer__base p { max-width: none; margin-bottom: 0.4rem; }
+.footer__brand { padding-block: 4rem 3.5rem; display: grid; justify-items: center; gap: 1.5rem; }
+.brand--footer img { height: 5.5rem; }
+.footer__statement { margin: 0; max-width: none; font: 400 1.15rem/1.4 var(--serif); color: var(--sand-dim); text-wrap: balance; }
+.footer__lower { border-top: 1px solid rgb(250 246 240 / 0.25); padding-top: 2rem; display: grid; gap: 1.25rem; justify-items: center; }
+.footer__lower ul { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 0.15rem 1.75rem; }
+.footer__nav a { display: inline-block; padding-block: 0.35rem; font-weight: 700; }
+.footer__legal { font-size: 0.95rem; }
+.footer__legal a { display: inline-block; padding-block: 0.25rem; color: var(--sand-dim); }
+.footer__legal a:hover { color: var(--white); }
+.footer__base { font-size: 0.95rem; color: var(--sand-dim); display: grid; gap: 0.2rem; }
+.footer__base p { max-width: none; margin: 0; }
+.footer__base a { color: var(--sand-dim); }
+.footer__base address { font-style: normal; }
+@media (min-width: 900px) { .footer__brand { padding-block: 5rem 4rem; } .brand--footer img { height: 7rem; } }
 address { font-style: normal; }
 /* An email address is one long unbreakable word; let it wrap rather than widen the page. */
 a[href^='mailto:'] { overflow-wrap: anywhere; }

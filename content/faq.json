@@ -1,0 +1,48 @@
+[
+  {
+    "id": "who-for",
+    "question": "Who is Progress & Purpose for?",
+    "answer": "Schools, colleges, local authorities and other SEND and education organisations working to improve preparation for adulthood. The ready-made resources are for the practitioners who use them, and 1:1 coaching is for an individual young person."
+  },
+  {
+    "id": "resources-or-services",
+    "question": "What is the difference between resources and services?",
+    "answer": "Resources are ready-made digital downloads, such as templates and toolkits, that you can use straight away. Services are written or advisory pieces of work, scoped and quoted for your organisation before anything starts.",
+    "link": {
+      "href": "/packages/",
+      "label": "See the services"
+    }
+  },
+  {
+    "id": "live-training",
+    "question": "Do you run live training, workshops or events?",
+    "answer": "No. Support is written or provided as ready-made materials, and live group training, workshops and events are not offered. The one live service is 1:1 coaching for an individual young person."
+  },
+  {
+    "id": "quote",
+    "question": "How do I ask for a quote?",
+    "answer": "Send an enquiry through the contact form and tell us about your setting. We usually reply within {RESPONSE_TIME}, by email, with a clear recommendation and a written quote, so you know the fee before any work begins.",
+    "link": {
+      "href": "/contact/",
+      "label": "Request a quote"
+    }
+  },
+  {
+    "id": "editable-licence",
+    "question": "Can we edit the templates and share them?",
+    "answer": "Yes, you can edit them. Templates come as Word files so your team can adapt them to your setting. Resources are licensed for one setting by default. If you need them across several schools or settings, get in touch and we will quote for it.",
+    "link": {
+      "href": "/legal/licence-terms/",
+      "label": "Read the licence terms"
+    }
+  },
+  {
+    "id": "coaching",
+    "question": "Who is 1:1 coaching for?",
+    "answer": "A young person with SEND who is working through post-16 transition, booked by their school or by a parent or carer. Sessions are always one-to-one, in person or online.",
+    "link": {
+      "href": "/contact/?package=one-to-one-coaching",
+      "label": "Enquire about coaching"
+    }
+  }
+]

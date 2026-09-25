@@ -14,7 +14,7 @@ const emailBreakable = CONTACT_EMAIL.replace('@', '@<wbr>');
         <div class="contact__info">
           <p class="eyebrow">Contact</p>
           <h1>Request a quote or ask a question.</h1>
-          <p class="lede">Tell us a little about your setting and what you need. We'll reply by email.</p>
+          <p class="lede">Tell us a little about your setting and what you need. We'll reply by email. Have a quick question first? Read the <a href="/faq/">FAQs</a>.</p>
           <ul class="contact__list">
             <li><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-10 6L2 7"/></svg><div><strong>Email</strong>{emailIsReal ? <a href={`mailto:${CONTACT_EMAIL}`} set:html={emailBreakable} /> : <span>{CONTACT_EMAIL}</span>}</div></li>
             {!ADDRESS.startsWith('[') && (<li><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg><div><strong>Address</strong><address>{ADDRESS}</address></div></li>)}

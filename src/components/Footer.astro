@@ -1,33 +1,30 @@
 ---
-import { SITE_NAME, TAGLINE, NAV, LEGAL_NAV, CONTACT_EMAIL, ADDRESS, LINKEDIN_URL, ANALYTICS } from '../config.mjs';
+import { SITE_NAME, NAV, LEGAL_NAV, CONTACT_EMAIL, ADDRESS, LINKEDIN_URL, ANALYTICS } from '../config.mjs';
 import Wordmark from './Wordmark.astro';
 const emailIsReal = CONTACT_EMAIL.includes('@') && !CONTACT_EMAIL.includes('[');
 const emailBreakable = CONTACT_EMAIL.replace('@', '@<wbr>');
 ---
 <footer class="site-footer">
   <div class="wrap">
-    <div class="footer__grid">
-      <div>
-        <Wordmark />
-        <p class="muted" style="color:var(--sand-dim);margin-top:1rem">{TAGLINE}. Written and product-based support for schools, colleges and local authorities.</p>
-      </div>
+    <div class="footer__brand">
+      <Wordmark tone="light" />
+      <p class="footer__statement">Practical support for better SEND transitions.</p>
+    </div>
+    <div class="footer__lower">
       <nav aria-label="Site">
-        <h2>Site</h2>
-        <ul>{NAV.map((i) => <li><a href={i.href}>{i.label}</a></li>)}<li><a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer">LinkedIn<span class="visually-hidden"> (opens in a new tab)</span></a></li></ul>
+        <ul class="footer__nav">{NAV.map((i) => <li><a href={i.href}>{i.label}</a></li>)}<li><a href="/faq/">FAQs</a></li><li><a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer">LinkedIn<span class="visually-hidden"> (opens in a new tab)</span></a></li></ul>
       </nav>
       <nav aria-label="Legal">
-        <h2>Legal</h2>
-        <ul>
+        <ul class="footer__legal">
           {LEGAL_NAV.map((i) => <li><a href={i.href}>{i.label}</a></li>)}
           {ANALYTICS.enabled && <li><a href="#" data-reopen-cookiebar>Cookie settings</a></li>}
         </ul>
       </nav>
-    </div>
-    <div class="footer__base">
-      <p><strong>{SITE_NAME}</strong> &middot;
-        {emailIsReal ? <a href={`mailto:${CONTACT_EMAIL}`} set:html={emailBreakable} /> : <span>{CONTACT_EMAIL}</span>}</p>
-      {!ADDRESS.startsWith('[') && <address>{ADDRESS}</address>}
-      <p>&copy; {new Date().getFullYear()} {SITE_NAME}. This site sets no tracking cookies.</p>
+      <div class="footer__base">
+        <p>{emailIsReal ? <a href={`mailto:${CONTACT_EMAIL}`} set:html={emailBreakable} /> : <span>{CONTACT_EMAIL}</span>}</p>
+        {!ADDRESS.startsWith('[') && <address>{ADDRESS}</address>}
+        <p>&copy; {new Date().getFullYear()} {SITE_NAME}. This site sets no tracking cookies.</p>
+      </div>
     </div>
   </div>
 </footer>
