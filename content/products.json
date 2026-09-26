@@ -46,7 +46,6 @@
       "summary": "A free, plain-English introduction to post-16 transition planning, sent by email.",
       "includes": [
         "Plain-English overview of the transition process",
-        "Questions worth asking at review meetings",
         "PDF, sent to your inbox after signing up"
       ],
       "forWho": "Parents and carers of young people with SEND thinking about the move into post-16 provision.",
@@ -55,7 +54,7 @@
       "price": "Free",
       "priceLabel": "Free download",
       "free": true,
-      "buyUrl": ""
+      "buyUrl": "https://payhip.com/b/Oh1z8"
     }
   ],
   "services": [

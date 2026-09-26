@@ -27,7 +27,7 @@ export const PAYMENT_PLATFORM = 'Payhip';
 // service is connected and tested; the privacy policy changes wording when it's true.
 export const MAILING_LIST = {
   provider: 'MailerLite',
-  live: false,
+  live: true,
 };
 
 // Free sample template on the home page. Leave `url` empty and the section is hidden.
