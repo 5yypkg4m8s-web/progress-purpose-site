@@ -37,9 +37,13 @@ export const FREE_SAMPLE = {
   title: '',
 };
 
-// Shown next to buy buttons. Replace after a solicitor has reviewed it.
+// Shown next to buy buttons. INTERIM wording (2026-09-28), used at Nadia's request while a
+// solicitor review is pending — see the wording-review doc. It states only the two things the
+// Consumer Contracts Regulations 2013 (reg. 37) require before losing the 14-day cancellation
+// right: consent to immediate delivery, and acknowledgment that the right to cancel is lost once
+// it starts. Replace with the solicitor's wording as soon as it's available.
 export const DELIVERY_CONSENT =
-  '[CHECKOUT CONSENT WORDING TO BE SUPPLIED AFTER SOLICITOR REVIEW: the buyer agrees to immediate delivery of digital content.]';
+  'I understand this download will begin immediately, and I agree. I understand that, once it does, I lose the right to cancel this order.';
 
 export const NAV = [
   { href: '/about/', label: 'About' },

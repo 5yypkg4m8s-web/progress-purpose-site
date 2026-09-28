@@ -200,6 +200,10 @@ ul { padding-left: 1.2em; }
 .cover--terracotta { background: var(--terra); }
 .cover--plum { background: var(--plum); }
 .cover--charcoal { background: var(--ink); }
+/* A supplied photo/graphic cover: shown at its own aspect ratio (set per image below) so it's
+   never cropped or stretched, with the same tag badge the other covers already use. */
+.cover--photo { aspect-ratio: 1; }
+.cover__photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
 .cover__sheet {
   position: absolute; left: 1.5rem; top: 1.5rem; width: 46%; height: 130%;
   background: var(--sand); border-radius: 0.6rem; padding: 1rem; box-shadow: 0 20px 40px -12px rgb(0 0 0 / 0.4);

@@ -4,9 +4,16 @@
 //   toolkit: fanned stack of sheets  |  starter: three numbered sheets  |  guide: one booklet
 // and, for the packages: review, briefing, coaching, bespoke, advisory.
 // With no `design` (the written services) the original single-sheet drawing is used.
-const { variant = 'terracotta', label = '', design = '', kicker = '', title = '' } = Astro.props;
+// `image` is the one exception: a real supplied photo/graphic instead of a CSS drawing,
+// shown at its own true aspect ratio so nothing is cropped or stretched.
+const { variant = 'terracotta', label = '', design = '', kicker = '', title = '', image = '' } = Astro.props;
 ---
-{design ? (
+{image ? (
+  <div class={`cover cover--${variant} cover--photo`} aria-hidden="true">
+    <img class="cover__photo" src={image} alt="" loading="lazy" />
+    {label && <span class="cover__tag">{label}</span>}
+  </div>
+) : design ? (
   <div class={`cover cover--${variant} cover--product cover--${design}`} aria-hidden="true">
     <div class="cover__text">
       {kicker && <span class="cover__kicker">{kicker}</span>}

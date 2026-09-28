@@ -37,6 +37,26 @@
       "buyUrl": ""
     },
     {
+      "id": "staff-briefing-resource-pack",
+      "design": "briefing",
+      "coverKicker": "Ready to share",
+      "coverTitle": "Staff Briefing",
+      "cover": "terracotta",
+      "name": "Staff Briefing Pack: Supporting Post-16 Transition",
+      "summary": "A ready-to-run 60-minute staff briefing on supporting young people with SEND through post-16 transition — slides, facilitator guide and printable handouts included.",
+      "includes": [
+        "16 editable PowerPoint slides with speaker notes and discussion prompts on every slide",
+        "A facilitator guide: minute-by-minute session plan, preparation checklist, facilitation tips, and 30-minute and half-day versions",
+        "Six printable staff handouts: quick reference, wording-practice worksheet, case-study activity, blank one-page profile template, action-planning sheet, feedback form"
+      ],
+      "forWho": "Teaching and support staff, tutors, learning support assistants, careers staff, and anyone working with young people with SEND in schools, colleges or other post-16 settings.",
+      "format": "PowerPoint, PDF and Word download",
+      "multiSiteLicence": true,
+      "price": "£295",
+      "priceLabel": "Per setting licence",
+      "buyUrl": "https://payhip.com/b/jtNsM"
+    },
+    {
       "id": "parent-carer-guide",
       "design": "guide",
       "coverKicker": "For parents and carers",

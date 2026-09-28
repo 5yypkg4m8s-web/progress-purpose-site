@@ -1,5 +1,6 @@
 ---
 import Cover from './Cover.astro';
+import { CONTACT_EMAIL } from '../config.mjs';
 const { item, kind } = Astro.props; // kind: 'product' | 'service'
 const isProduct = kind === 'product';
 // Anything still in [square brackets] is an unfinished placeholder; keep it off the public page.
@@ -7,7 +8,7 @@ const includes = item.includes.filter((i) => !i.startsWith('['));
 const showLicence = isProduct && item.licence && !item.licence.startsWith('[');
 ---
 <article class="card" data-reveal>
-  <Cover variant={item.cover} label={isProduct ? item.format : (item.coverTag || 'Written service')} design={item.design} kicker={item.coverKicker} title={item.coverTitle} />
+  <Cover variant={item.cover} label={isProduct ? item.format : (item.coverTag || 'Written service')} design={item.design} image={item.image} kicker={item.coverKicker} title={item.coverTitle} />
   <div class="card__body">
     <p class="card__kind">{isProduct ? (item.free ? 'Free download' : 'Digital download') : 'Enquiry-led'}</p>
     <h3>{item.name}</h3>
@@ -20,11 +21,16 @@ const showLicence = isProduct && item.licence && !item.licence.startsWith('[');
     <div class="card__foot">
       {isProduct ? (
         <>
-          <p class="price" style="margin:0"><small>{item.priceLabel || 'Price'}</small>{item.price}</p>
+          <div>
+            <p class="price" style="margin:0"><small>{item.priceLabel || 'Price'}</small>{item.price}</p>
+            {item.multiSiteLicence && (
+              <p class="hint" style="margin:0.35rem 0 0">Single-setting licence. For a multi-site licence, contact <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.</p>
+            )}
+          </div>
           {item.buyUrl ? (
             item.free
-              ? <a class="btn btn--primary" href={item.buyUrl}>Get the guide<span class="visually-hidden">: {item.name}</span></a>
-              : <a class="btn btn--primary" href={item.buyUrl} data-buy>Buy now<span class="visually-hidden">: {item.name}</span></a>
+              ? <a class="btn btn--primary" href={item.buyUrl} target="_blank" rel="noopener noreferrer">Get the guide<span class="visually-hidden">: {item.name} (opens in a new tab)</span></a>
+              : <a class="btn btn--primary" href={item.buyUrl} target="_blank" rel="noopener noreferrer" data-buy>Buy now<span class="visually-hidden">: {item.name} (opens in a new tab)</span></a>
           ) : null /* no button until the Payhip link exists */}
         </>
       ) : (
