@@ -1,8 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import Enquire from '../components/Enquire.astro';
-import { AUTHOR_NAME, LINKEDIN_URL, FREE_SAMPLE } from '../config.mjs';
-const initials = AUTHOR_NAME.split(' ').map((w) => w[0]).join('').slice(0, 2);
+import { FREE_SAMPLE } from '../config.mjs';
 ---
 <Base home description="Practical SEND transition resources, consultancy and tailored support for schools, colleges and local authorities. Post-16, preparing for adulthood, autism and EHCP.">
   <section class="hero">
@@ -90,15 +89,6 @@ const initials = AUTHOR_NAME.split(' ').map((w) => w[0]).join('').slice(0, 2);
       </div>
     </section>
   )}
-
-  <section class="section section--dark">
-    <div class="wrap">
-      <div class="author" data-reveal>
-        <span class="monogram" aria-hidden="true">{initials}</span>
-        <p>Progress &amp; Purpose is founded by <strong>{AUTHOR_NAME}</strong>, who brings an MSc in Autism Studies and over five years’ frontline experience supporting young people with SEND in post-16 settings. This experience informs our practical, evidence-informed approach to SEND transition and professional support. <a href="/about/">About Progress &amp; Purpose</a> &middot; <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer">LinkedIn<span class="visually-hidden"> (opens in a new tab)</span></a></p>
-      </div>
-    </div>
-  </section>
 
   <script>
     // The hero's ball climbs the dotted path and rolls back down, on a loop.
