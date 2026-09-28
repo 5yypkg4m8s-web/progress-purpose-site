@@ -11,9 +11,11 @@ const schema = {
     item: { '@type': 'Product', name: p.name, description: p.summary },
   })),
 };
-// The consent tick-box is hidden while its wording is still a placeholder and there is nothing
-// to buy yet. Once any buy link exists it shows again, so it can never be skipped.
-const showConsent = !DELIVERY_CONSENT.startsWith('[') || data.products.some((p) => p.buyUrl);
+// The consent tick-box is hidden while its wording is still a placeholder and there is no paid
+// product to buy yet. Once a paid buy link exists it shows again, so it can never be skipped.
+// (A free product's link, e.g. the guide, doesn't need this box: there's no cancellation right
+// at stake on a £0 order.)
+const showConsent = !DELIVERY_CONSENT.startsWith('[') || data.products.some((p) => p.buyUrl && !p.free);
 ---
 <Base title="Resources" schema={schema} description="Editable SEND transition templates and toolkits for post-16 settings, delivered as Word and PDF downloads.">
   <section class="page-head">
