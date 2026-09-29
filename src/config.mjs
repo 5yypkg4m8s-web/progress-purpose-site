@@ -30,11 +30,12 @@ export const MAILING_LIST = {
   live: true,
 };
 
-// Free sample template on the home page. Leave `url` empty and the section is hidden.
-// Paste a Payhip free-product link (or a direct file link) and it appears.
+// Free sample on the home page. Leave `url` empty and the section is hidden.
+// A free sample of the Written Transition Provision Review service (see content/products.json's
+// services list) — its download, and a separate "enquire about a full review" button beside it.
 export const FREE_SAMPLE = {
-  url: '',
-  title: '',
+  url: 'https://payhip.com/b/94hFt',
+  title: 'Written Transition Provision Review',
 };
 
 // Shown next to buy buttons. INTERIM wording (2026-09-28), used at Nadia's request while a

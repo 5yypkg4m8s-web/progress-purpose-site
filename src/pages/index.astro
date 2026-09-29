@@ -81,10 +81,13 @@ import { FREE_SAMPLE } from '../config.mjs';
         <div class="callout" data-reveal>
           <div>
             <p class="eyebrow">Free sample</p>
-            <h2>Try a free template.</h2>
-            <p>Download a free sample to see the style and format before you buy.{FREE_SAMPLE.title && <> This one is: {FREE_SAMPLE.title}.</>}</p>
+            <h2>See a sample review, free.</h2>
+            <p>Get a free sample from a {FREE_SAMPLE.title}, so you can see what your setting would receive. Want the full review? Enquire and we'll scope it for you.</p>
           </div>
-          <a class="btn btn--primary" href={FREE_SAMPLE.url}>Get the free sample</a>
+          <div class="actions" style="margin-top:0">
+            <a class="btn btn--primary" href={FREE_SAMPLE.url} target="_blank" rel="noopener noreferrer">Get the free sample<span class="visually-hidden"> (opens in a new tab)</span></a>
+            <a class="btn btn--ghost" href="/contact/?package=transition-provision-review">Enquire about a full review</a>
+          </div>
         </div>
       </div>
     </section>
