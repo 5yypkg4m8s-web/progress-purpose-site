@@ -85,19 +85,25 @@ const ogImage = new URL('/images/og-cover.png', SITE_URL).href;
         items.forEach((el) => el.classList.add('in'));
       }
 
-      // Immediate-delivery consent must be ticked before following a buy link. Each
-      // product card has its own checkbox next to its own button, so ticking one
-      // product's box never unlocks another's, and the message always appears right
-      // next to the button the visitor just pressed.
+      // Immediate-delivery consent must be ticked before following a buy link. It stays
+      // hidden until a visitor presses Buy, instead of sitting in front of every product
+      // unasked — the first press reveals it next to that product's own button; a second
+      // press without ticking it shows the reminder. Each product has its own checkbox, so
+      // ticking one never unlocks another's.
       document.querySelectorAll('[data-buy]').forEach((a) => {
         const card = a.closest('.card');
+        const wrap = card?.querySelector('.consent');
         const consent = card?.querySelector('.delivery-consent');
         const error = card?.querySelector('.consent-error');
         if (!consent) return;
         a.addEventListener('click', (ev) => {
           if (!consent.checked) {
             ev.preventDefault();
-            if (error) error.hidden = false;
+            if (wrap && wrap.hidden) {
+              wrap.hidden = false;
+            } else if (error) {
+              error.hidden = false;
+            }
             consent.focus();
           }
         });

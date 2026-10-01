@@ -21,15 +21,6 @@ const needsConsent = isProduct && item.buyUrl && !item.free && !DELIVERY_CONSENT
       <div><dt>Who it is for</dt><dd>{item.forWho}</dd></div>
       {showLicence && <div><dt>Licence</dt><dd>{item.licence}</dd></div>}
     </dl>
-    {needsConsent && (
-      <div class="consent notice">
-        <label>
-          <input type="checkbox" class="delivery-consent" />
-          <span>{DELIVERY_CONSENT}</span>
-        </label>
-        <p class="error consent-error" role="alert" hidden>Please tick the box above before buying.</p>
-      </div>
-    )}
     <div class="card__foot">
       {isProduct ? (
         <>
@@ -52,5 +43,14 @@ const needsConsent = isProduct && item.buyUrl && !item.free && !DELIVERY_CONSENT
         </>
       )}
     </div>
+    {needsConsent && (
+      <div class="consent notice" hidden>
+        <label>
+          <input type="checkbox" class="delivery-consent" />
+          <span>{DELIVERY_CONSENT}</span>
+        </label>
+        <p class="error consent-error" role="alert" hidden>Please tick the box above, then press buy again.</p>
+      </div>
+    )}
   </div>
 </article>
