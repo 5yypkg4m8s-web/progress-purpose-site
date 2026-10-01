@@ -1,6 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
-import { AUTHOR_NAME, LINKEDIN_URL } from '../config.mjs';
+import { AUTHOR_NAME } from '../config.mjs';
 ---
 <Base title="About" description={`About ${AUTHOR_NAME}: MSc in Autism Studies and more than five years' frontline experience supporting young people with SEND in post-16 settings.`}>
   <section class="page-head">
@@ -37,8 +37,7 @@ import { AUTHOR_NAME, LINKEDIN_URL } from '../config.mjs';
           <li>MSc in Autism Studies</li>
           <li>More than five years' frontline experience in post-16 SEND settings</li>
         </ul>
-        <div class="actions"><a class="btn btn--primary" href="/contact/">Request a quote</a>
-          <a class="btn btn--ghost btn--plain" href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer">Connect on LinkedIn<span class="visually-hidden"> (opens in a new tab)</span></a></div>
+        <div class="actions"><a class="btn btn--primary" href="/contact/">Request a quote</a></div>
       </div>
     </div>
   </section>

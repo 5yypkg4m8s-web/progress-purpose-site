@@ -1,5 +1,5 @@
 ---
-import { SITE_NAME, NAV, LEGAL_NAV, CONTACT_EMAIL, ADDRESS, LINKEDIN_URL, ANALYTICS } from '../config.mjs';
+import { SITE_NAME, NAV, LEGAL_NAV, CONTACT_EMAIL, ADDRESS, ANALYTICS } from '../config.mjs';
 import Wordmark from './Wordmark.astro';
 const emailIsReal = CONTACT_EMAIL.includes('@') && !CONTACT_EMAIL.includes('[');
 const emailBreakable = CONTACT_EMAIL.replace('@', '@<wbr>');
@@ -11,7 +11,7 @@ const emailBreakable = CONTACT_EMAIL.replace('@', '@<wbr>');
     </div>
     <div class="footer__lower">
       <nav aria-label="Site">
-        <ul class="footer__nav">{NAV.map((i) => <li><a href={i.href}>{i.label}</a></li>)}<li><a href="/faq/">FAQs</a></li><li><a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer">LinkedIn<span class="visually-hidden"> (opens in a new tab)</span></a></li></ul>
+        <ul class="footer__nav">{NAV.map((i) => <li><a href={i.href}>{i.label}</a></li>)}<li><a href="/faq/">FAQs</a></li></ul>
       </nav>
       <nav aria-label="Legal">
         <ul class="footer__legal">

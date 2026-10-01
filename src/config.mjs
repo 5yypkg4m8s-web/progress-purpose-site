@@ -62,9 +62,6 @@ export const LEGAL_NAV = [
   { href: '/legal/accessibility-statement/', label: 'Accessibility statement' },
 ];
 
-// Personal profile only. Nothing from any other organisation.
-export const LINKEDIN_URL = 'https://www.linkedin.com/in/nadia-abudulkadir-613666255';
-
 // Analytics: off by default. The site sets no cookies until you turn this on.
 // Turn it on only after you've created an account with a privacy-friendly, cookie-free
 // provider (e.g. Plausible, plausible.io) and set your domain below.

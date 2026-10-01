@@ -9,7 +9,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import CookieConsent from '../components/CookieConsent.astro';
 import FloatingMenu from '../components/FloatingMenu.astro';
-import { SITE_NAME, TAGLINE, SITE_URL, AUTHOR_NAME, LINKEDIN_URL } from '../config.mjs';
+import { SITE_NAME, TAGLINE, SITE_URL, AUTHOR_NAME } from '../config.mjs';
 
 const { title, description, noindex = false, schema = null, home = false } = Astro.props;
 const fullTitle = home ? `${SITE_NAME} | ${TAGLINE}` : `${title} | ${SITE_NAME}`;
@@ -20,7 +20,7 @@ const site = {
   name: SITE_NAME,
   url: SITE_URL,
   description: TAGLINE,
-  founder: { '@type': 'Person', name: AUTHOR_NAME, sameAs: [LINKEDIN_URL] },
+  founder: { '@type': 'Person', name: AUTHOR_NAME },
 };
 const graph = [site, schema].filter(Boolean);
 const ogImage = new URL('/images/og-cover.png', SITE_URL).href;
