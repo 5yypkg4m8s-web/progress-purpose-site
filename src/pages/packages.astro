@@ -9,7 +9,7 @@ import data from '../../content/products.json';
 const byId = (ids) => ids.map((id) => data.services.find((s) => s.id === id)).filter(Boolean);
 const tiers = [
   { n: '01', name: 'Review', line: 'Understand where you are and what needs to change.', items: byId(['transition-provision-review']) },
-  { n: '02', name: 'Develop', line: 'Turn your priorities into practical tools and resources.', items: byId(['bespoke-resource-design', 'staff-briefing-pack']) },
+  { n: '02', name: 'Develop', line: 'Turn your priorities into practical tools and resources.', items: byId(['bespoke-resource-design']) },
   { n: '03', name: 'Advise', line: 'Get specialist input when you need it.', items: byId(['local-authority-advisory']) },
   { n: '', name: 'For individuals', line: 'One-to-one coaching for a young person, a separate service from the organisational support above.', items: byId(['one-to-one-coaching']), apart: true },
 ];

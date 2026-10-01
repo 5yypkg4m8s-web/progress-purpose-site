@@ -16,7 +16,6 @@
       "format": "Word and PDF download",
       "licence": "Single-setting licence",
       "price": "£45",
-      "priceLabel": "Introductory price",
       "buyUrl": "https://payhip.com/b/foLH7"
     },
     {
@@ -50,7 +49,7 @@
         "Six printable staff handouts: quick reference, wording-practice worksheet, case-study activity, blank one-page profile template, action-planning sheet, feedback form"
       ],
       "forWho": "Teaching and support staff, tutors, learning support assistants, careers staff, and anyone working with young people with SEND in schools, colleges or other post-16 settings.",
-      "format": "PowerPoint, PDF and Word download",
+      "format": "PowerPoint and Word download",
       "multiSiteLicence": true,
       "price": "£295",
       "priceLabel": "Per setting licence",
@@ -94,24 +93,6 @@
       ],
       "forWho": "Schools, colleges and local authorities wanting a considered written view of their transition provision.",
       "fee": "From £650",
-      "cta": "Request a quote"
-    },
-    {
-      "id": "staff-briefing-pack",
-      "design": "briefing",
-      "coverKicker": "Ready to share",
-      "coverTitle": "Staff Briefing",
-      "coverTag": "Written service",
-      "cover": "terracotta",
-      "name": "Staff Briefing Pack",
-      "summary": "Ready-to-use slides and handouts so your own team can brief colleagues on transition.",
-      "includes": [
-        "Slides you can present yourselves",
-        "Printable handouts",
-        "Editable files so you can adapt them"
-      ],
-      "forWho": "Settings that want to brief their own staff using materials they deliver in-house.",
-      "fee": "£295 per setting licence",
       "cta": "Request a quote"
     },
     {
