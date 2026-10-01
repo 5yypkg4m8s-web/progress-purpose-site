@@ -1,11 +1,14 @@
 ---
 import Cover from './Cover.astro';
-import { CONTACT_EMAIL } from '../config.mjs';
+import { CONTACT_EMAIL, DELIVERY_CONSENT } from '../config.mjs';
 const { item, kind } = Astro.props; // kind: 'product' | 'service'
 const isProduct = kind === 'product';
 // Anything still in [square brackets] is an unfinished placeholder; keep it off the public page.
 const includes = item.includes.filter((i) => !i.startsWith('['));
 const showLicence = isProduct && item.licence && !item.licence.startsWith('[');
+// Shown right next to this product's own buy button, not once for the whole page — so it
+// can never silently block a button the visitor has already scrolled past on a long page.
+const needsConsent = isProduct && item.buyUrl && !item.free && !DELIVERY_CONSENT.startsWith('[');
 ---
 <article class="card" data-reveal>
   <Cover variant={item.cover} label={isProduct ? item.format : (item.coverTag || 'Written service')} design={item.design} image={item.image} kicker={item.coverKicker} title={item.coverTitle} />
@@ -18,6 +21,15 @@ const showLicence = isProduct && item.licence && !item.licence.startsWith('[');
       <div><dt>Who it is for</dt><dd>{item.forWho}</dd></div>
       {showLicence && <div><dt>Licence</dt><dd>{item.licence}</dd></div>}
     </dl>
+    {needsConsent && (
+      <div class="consent notice">
+        <label>
+          <input type="checkbox" class="delivery-consent" />
+          <span>{DELIVERY_CONSENT}</span>
+        </label>
+        <p class="error consent-error" role="alert" hidden>Please tick the box above before buying.</p>
+      </div>
+    )}
     <div class="card__foot">
       {isProduct ? (
         <>

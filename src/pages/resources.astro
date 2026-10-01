@@ -3,7 +3,7 @@ import Base from '../layouts/Base.astro';
 import ProductCard from '../components/ProductCard.astro';
 import Enquire from '../components/Enquire.astro';
 import data from '../../content/products.json';
-import { DELIVERY_CONSENT, PAYMENT_PLATFORM } from '../config.mjs';
+import { PAYMENT_PLATFORM } from '../config.mjs';
 const schema = {
   '@context': 'https://schema.org', '@type': 'ItemList',
   itemListElement: data.products.map((p, i) => ({
@@ -11,11 +11,6 @@ const schema = {
     item: { '@type': 'Product', name: p.name, description: p.summary },
   })),
 };
-// The consent tick-box is hidden while its wording is still a placeholder and there is no paid
-// product to buy yet. Once a paid buy link exists it shows again, so it can never be skipped.
-// (A free product's link, e.g. the guide, doesn't need this box: there's no cancellation right
-// at stake on a £0 order.)
-const showConsent = !DELIVERY_CONSENT.startsWith('[') || data.products.some((p) => p.buyUrl && !p.free);
 ---
 <Base title="Resources" schema={schema} description="SEND transition templates and toolkits for post-16 settings, delivered as Word and PDF downloads — format varies by resource.">
   <section class="page-head">
@@ -30,13 +25,6 @@ const showConsent = !DELIVERY_CONSENT.startsWith('[') || data.products.some((p) 
   <section class="section" style="padding-top:1rem">
     <div class="wrap">
       <div class="notice" style="margin-bottom:2rem"><p>Resources are bought through {PAYMENT_PLATFORM}'s secure checkout. Card details are entered on {PAYMENT_PLATFORM}, never on this site.</p></div>
-      {showConsent && <div class="consent notice">
-        <label>
-          <input type="checkbox" id="delivery-consent" />
-          <span>{DELIVERY_CONSENT}</span>
-        </label>
-        <p class="error" id="consent-error" role="alert" hidden>Please tick the box above before buying.</p>
-      </div>}
       <div class="grid grid--2">
         {data.products.map((item) => <ProductCard item={item} kind="product" />)}
       </div>

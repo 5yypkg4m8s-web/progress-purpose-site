@@ -85,19 +85,24 @@ const ogImage = new URL('/images/og-cover.png', SITE_URL).href;
         items.forEach((el) => el.classList.add('in'));
       }
 
-      // Immediate-delivery consent must be ticked before following a buy link
-      const consent = document.querySelector('#delivery-consent');
-      const error = document.querySelector('#consent-error');
-      document.querySelectorAll('[data-buy]').forEach((a) =>
+      // Immediate-delivery consent must be ticked before following a buy link. Each
+      // product card has its own checkbox next to its own button, so ticking one
+      // product's box never unlocks another's, and the message always appears right
+      // next to the button the visitor just pressed.
+      document.querySelectorAll('[data-buy]').forEach((a) => {
+        const card = a.closest('.card');
+        const consent = card?.querySelector('.delivery-consent');
+        const error = card?.querySelector('.consent-error');
+        if (!consent) return;
         a.addEventListener('click', (ev) => {
-          if (consent && !consent.checked) {
+          if (!consent.checked) {
             ev.preventDefault();
-            error.hidden = false;
+            if (error) error.hidden = false;
             consent.focus();
           }
-        })
-      );
-      consent?.addEventListener('change', () => { if (consent.checked) error.hidden = true; });
+        });
+        consent.addEventListener('change', () => { if (consent.checked && error) error.hidden = true; });
+      });
 
       // Pre-select the package on the enquiry form from ?package=
       const select = document.querySelector('#package');
