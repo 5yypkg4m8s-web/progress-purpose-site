@@ -1,7 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
 import { AUTHOR_NAME, LINKEDIN_URL } from '../config.mjs';
-const initials = AUTHOR_NAME.split(' ').map((w) => w[0]).join('').slice(0, 2);
 ---
 <Base title="About" description={`About ${AUTHOR_NAME}: MSc in Autism Studies and more than five years' frontline experience supporting young people with SEND in post-16 settings.`}>
   <section class="page-head">
@@ -11,7 +10,7 @@ const initials = AUTHOR_NAME.split(' ').map((w) => w[0]).join('').slice(0, 2);
     </div>
   </section>
   <section class="section" style="padding-top:1rem">
-    <div class="wrap split">
+    <div class="wrap">
       <div class="prose">
         <p class="lede">Progress &amp; Purpose provides practical SEND transition resources, consultancy and tailored support for schools, colleges and local authorities.</p>
         <p>We help organisations make preparation for adulthood clearer, more practical and easier to implement — from reviewing existing provision to developing resources and written guidance.</p>
@@ -36,9 +35,6 @@ const initials = AUTHOR_NAME.split(' ').map((w) => w[0]).join('').slice(0, 2);
         </ul>
         <div class="actions"><a class="btn btn--primary" href="/contact/">Request a quote</a>
           <a class="btn btn--ghost btn--plain" href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer">Connect on LinkedIn<span class="visually-hidden"> (opens in a new tab)</span></a></div>
-      </div>
-      <div class="aside" aria-hidden="true" style="text-align:center">
-        <span class="monogram" style="width:7rem;height:7rem;font-size:2.5rem;margin:0 auto">{initials}</span>
       </div>
     </div>
   </section>
