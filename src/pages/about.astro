@@ -15,6 +15,10 @@ import { AUTHOR_NAME, LINKEDIN_URL } from '../config.mjs';
         <p class="lede">Progress &amp; Purpose provides practical SEND transition resources, consultancy and tailored support for schools, colleges and local authorities.</p>
         <p>We help organisations make preparation for adulthood clearer, more practical and easier to implement — from reviewing existing provision to developing resources and written guidance.</p>
         <p>Progress &amp; Purpose was founded by {AUTHOR_NAME}, who holds an MSc in Autism Studies and has more than five years' frontline experience supporting young people with SEND in post-16 settings.</p>
+        <blockquote class="pull-quote">
+          <p>Watching my autistic brother thrive taught me what's possible with the right support — it's why I do this work.</p>
+          <cite>— {AUTHOR_NAME}</cite>
+        </blockquote>
         <p>Our approach is grounded in understanding the individual or organisation behind each enquiry. We take the time to understand your circumstances, identify what matters most and provide support that is purposeful, practical and focused on meaningful progress.</p>
         <h2>Our Approach</h2>
         <p>Every person, organisation and set of circumstances is different. Our approach is therefore flexible and tailored rather than one-size-fits-all.</p>
@@ -39,3 +43,22 @@ import { AUTHOR_NAME, LINKEDIN_URL } from '../config.mjs';
     </div>
   </section>
 </Base>
+
+<style>
+  .pull-quote {
+    margin: 2rem 0;
+    padding: 0 0 0 1.5rem;
+    border-left: 4px solid var(--terra);
+  }
+  .pull-quote p {
+    margin: 0 0 0.5rem;
+    font: 500 1.4rem/1.45 var(--serif);
+    font-style: italic;
+    color: var(--ink);
+  }
+  .pull-quote cite {
+    font: 700 0.95rem/1 var(--sans);
+    font-style: normal;
+    color: var(--ink-soft);
+  }
+</style>
