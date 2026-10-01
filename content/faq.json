@@ -16,7 +16,7 @@
   {
     "id": "live-training",
     "question": "Do you run live training, workshops or events?",
-    "answer": "No. Support is written or provided as ready-made materials, and live group training, workshops and events are not offered. The one live service is 1:1 coaching for an individual young person."
+    "answer": "No. Support is written or provided as ready-made materials, and live group training, workshops and events are not offered. 1:1 coaching for an individual young person can include live sessions, in person or online, depending on what suits them."
   },
   {
     "id": "quote",
@@ -39,7 +39,7 @@
   {
     "id": "coaching",
     "question": "Who is 1:1 coaching for?",
-    "answer": "A young person with SEND who is working through post-16 transition, booked by their school or by a parent or carer. Sessions are always one-to-one, in person or online.",
+    "answer": "A young person with SEND who is working through post-16 transition, booked by their school or by a parent or carer. Always one-to-one, delivered in writing, in person or online depending on what suits them.",
     "link": {
       "href": "/contact/?package=one-to-one-coaching",
       "label": "Enquire about coaching"
